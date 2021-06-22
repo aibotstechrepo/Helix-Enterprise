@@ -1,0 +1,2 @@
+Hocr Parser for spliting paragraph, Line item,word.
+Auto Recognize table iteration 1

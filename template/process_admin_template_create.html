@@ -1,0 +1,619 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Helix OCR</title>
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/AiBots.ico' %}">
+    <!-- Custom Stylesheet -->
+    <link rel="stylesheet" href="{% static 'plugins/highlightjs/styles/darkula.css' %}">
+    <link href="{% static '/plugins/tables/css/datatable/dataTables.bootstrap4.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <!--<style type="text/css">
+    /* Track */
+    ::-webkit-scrollbar-track {
+      background: #f1f1f1; 
+    }
+     
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+      background: #888; 
+    }
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+      background: #555; 
+    }
+
+    ::-webkit-scrollbar {
+    height: 4px;              /* height of horizontal scrollbar ← You're missing this */
+    width: 4px;               /* width of vertical scrollbar */
+    border: 1px solid #d5d5d5;
+    }
+    </style>-->
+
+</head>
+
+<body>
+
+    <!--*******************
+        Preloader start
+    ********************-->
+    <div id="preloader">
+        <div class="loader">
+            <svg class="circular" viewBox="25 25 50 50">
+                <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="3" stroke-miterlimit="10" />
+            </svg>
+        </div>
+    </div>
+    <!--*******************
+        Preloader end
+    ********************-->
+
+    
+    <!--**********************************
+        Main wrapper start
+    ***********************************-->
+    <div id="main-wrapper">
+
+        <!--**********************************
+            Nav header start
+        ***********************************-->
+        <div class="nav-header" style="background-color: #f8f9fa;height:4.5rem;">
+            <div class="brand-logo">
+                <a href="dashboard.html">
+                    <b class="logo-abbr"><img src="{% static 'images/AiBots.ico' %}" alt=""> </b>
+                    <span class="logo-compact"><img src="{% static 'images/AIBOTSTECH.png' %}" alt=""></span>
+                    <span class="brand-title">
+                        <img src="{% static 'images/AIBOTSTECH.png' %}" alt="" width="90%">
+                    </span>
+                </a>
+            </div>
+        </div>
+        <!--**********************************
+            Nav header end
+        ***********************************-->
+
+        <!--**********************************
+            Header start
+        ***********************************-->
+        <div class="header" style="">    
+            <div class="header-content clearfix">
+                
+                <div class="nav-control">
+                    <div class="hamburger">
+                        <span class="toggle-icon"><i class="icon-menu"></i></span>
+                    </div>
+                </div>
+                <div class="header-left">
+                    <div class="input-group icons">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-transparent border-0 pr-2 pr-sm-3" id="basic-addon1"><i class="mdi mdi-magnify"></i></span>
+                        </div>
+                        <input type="search" class="form-control" placeholder="Search Dashboard" aria-label="Search Dashboard">
+                        <div class="drop-down   d-md-none">
+							<form action="#">
+								<input type="text" class="form-control" placeholder="Search">
+							</form>
+                        </div>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <ul class="clearfix">
+                        <li class="icons dropdown"><a href="javascript:void(0)" data-toggle="dropdown">
+                                <i class="mdi mdi-email-outline"></i>
+                                <span class="badge gradient-1 badge-pill badge-primary">3</span>
+                            </a>
+                            <div class="drop-down animated fadeIn dropdown-menu">
+                                <div class="dropdown-content-heading d-flex justify-content-between">
+                                    <span class="">3 New Messages</span>  
+                                    
+                                </div>
+                                <div class="dropdown-content-body">
+                                    <ul>
+                                        <li class="notification-unread">
+                                            <a href="javascript:void()">
+                                                <img class="float-left mr-3 avatar-img" src="{% static 'images/avatar/1.jpg' %}" alt="">
+                                                <div class="notification-content">
+                                                    <div class="notification-heading">Saiful Islam</div>
+                                                    <div class="notification-timestamp">08 Hours ago</div>
+                                                    <div class="notification-text">Hi Teddy, Just wanted to let you ...</div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li class="notification-unread">
+                                            <a href="javascript:void()">
+                                                <img class="float-left mr-3 avatar-img" src="{% static 'images/avatar/2.jpg' %}" alt="">
+                                                <div class="notification-content">
+                                                    <div class="notification-heading">Adam Smith</div>
+                                                    <div class="notification-timestamp">08 Hours ago</div>
+                                                    <div class="notification-text">Can you do me a favour?</div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:void()">
+                                                <img class="float-left mr-3 avatar-img" src="{% static 'images/avatar/3.jpg' %}" alt="">
+                                                <div class="notification-content">
+                                                    <div class="notification-heading">Barak Obama</div>
+                                                    <div class="notification-timestamp">08 Hours ago</div>
+                                                    <div class="notification-text">Hi Teddy, Just wanted to let you ...</div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:void()">
+                                                <img class="float-left mr-3 avatar-img" src="{% static 'images/avatar/4.jpg' %}" alt="">
+                                                <div class="notification-content">
+                                                    <div class="notification-heading">Hilari Clinton</div>
+                                                    <div class="notification-timestamp">08 Hours ago</div>
+                                                    <div class="notification-text">Hello</div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                    
+                                </div>
+                            </div>
+                        </li>
+                        <li class="icons dropdown"><a href="javascript:void(0)" data-toggle="dropdown">
+                                <i class="mdi mdi-bell-outline"></i>
+                                <span class="badge badge-pill gradient-2 badge-primary">3</span>
+                            </a>
+                            <div class="drop-down animated fadeIn dropdown-menu dropdown-notfication">
+                                <div class="dropdown-content-heading d-flex justify-content-between">
+                                    <span class="">2 New Notifications</span>  
+                                    
+                                </div>
+                                <div class="dropdown-content-body">
+                                    <ul>
+                                        <li>
+                                            <a href="javascript:void()">
+                                                <span class="mr-3 avatar-icon bg-success-lighten-2"><i class="icon-present"></i></span>
+                                                <div class="notification-content">
+                                                    <h6 class="notification-heading">Events near you</h6>
+                                                    <span class="notification-text">Within next 5 days</span> 
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:void()">
+                                                <span class="mr-3 avatar-icon bg-danger-lighten-2"><i class="icon-present"></i></span>
+                                                <div class="notification-content">
+                                                    <h6 class="notification-heading">Event Started</h6>
+                                                    <span class="notification-text">One hour ago</span> 
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:void()">
+                                                <span class="mr-3 avatar-icon bg-success-lighten-2"><i class="icon-present"></i></span>
+                                                <div class="notification-content">
+                                                    <h6 class="notification-heading">Event Ended Successfully</h6>
+                                                    <span class="notification-text">One hour ago</span>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:void()">
+                                                <span class="mr-3 avatar-icon bg-danger-lighten-2"><i class="icon-present"></i></span>
+                                                <div class="notification-content">
+                                                    <h6 class="notification-heading">Events to Join</h6>
+                                                    <span class="notification-text">After two days</span> 
+                                                </div>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                    
+                                </div>
+                            </div>
+                        </li>
+                        <!--<li class="icons dropdown d-none d-md-flex">
+                            <a href="javascript:void(0)" class="log-user"  data-toggle="dropdown">
+                                <span>English</span>  <i class="fa fa-angle-down f-s-14" aria-hidden="true"></i>
+                            </a>
+                            <div class="drop-down dropdown-language animated fadeIn  dropdown-menu">
+                                <div class="dropdown-content-body">
+                                    <ul>
+                                        <li><a href="javascript:void()">English</a></li>
+                                        <li><a href="javascript:void()">Dutch</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>-->
+                        <li class="icons dropdown">
+                            <div class="user-img c-pointer position-relative"   data-toggle="dropdown">
+                                <span class="activity active"></span>
+                                <img src="{% static 'images/admin.png' %}" height="40" width="40" alt="">
+                            </div>
+                            <div class="drop-down dropdown-profile   dropdown-menu">
+                                <div class="dropdown-content-body">
+                                    <ul>
+                                        <li>
+                                            <a href="app-profile.html"><i class="icon-user"></i> <span>Profile</span></a>
+                                        </li>
+                                        <li>
+                                            <a href="email-inbox.html"><i class="icon-envelope-open"></i> <span>Inbox</span> <div class="badge gradient-3 badge-pill badge-primary">3</div></a>
+                                        </li>
+                                        
+                                        <hr class="my-2">
+                                        <li>
+                                            <a href="page-lock.html"><i class="icon-lock"></i> <span>Lock Screen</span></a>
+                                        </li>
+                                        <li><a href="page-login.html"><i class="icon-key"></i> <span>Logout</span></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!--**********************************
+            Header end ti-comment-alt
+        ***********************************-->
+
+        <!--**********************************
+            Sidebar start
+        ***********************************-->
+        <div class="nk-sidebar" style="top:4.5rem;">           
+            <div class="nk-nav-scroll">
+                <ul class="metismenu" id="menu">
+                    <li>
+                        <a>
+                            <i class="icon-link menu-icon"></i><span class="nav-text">Dashboard</span>
+                        </a>
+                    </li> 
+
+                    <li>
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false"> 
+                            <i class="icon-note menu-icon"></i><span class="nav-text">Template</span>
+                        </a>
+                        
+                        <ul aria-expanded="false">
+                            <li><a href="/process_admin_template_create">Create</a></li>
+                            <li><a href="/view_number_of_templates">View All</a></li> 
+                            <li><a href="#">Repository</a></li>  
+                        </ul>
+                        
+                    </li>  
+                    <li>
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <i class="icon-notebook menu-icon"></i><span class="nav-text">Approvals</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Template Approve</a>
+                                <ul aria-expanded="false">
+                                    <li><a href="./page-error-404.html">Pending</a></li>
+                                    <li><a href="./page-error-403.html">Approval</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <ul aria-expanded="false">
+                            <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Schedular Approve</a>
+                                <ul aria-expanded="false">
+                                    <li><a href="/process_admin_schedular_pending">Pending</a></li>
+                                    <li><a href="./page-error-403.html">Approval</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false"> 
+                            <i class="icon-note menu-icon"></i><span class="nav-text">User Management</span>
+                        </a>
+                        
+                        <ul aria-expanded="false">
+                            <li><a href="/process_admin">Create User</a></li>
+                            <li><a href="/process_admin_user_view">View All</a></li>
+                            <li><a href="/process_admin_user_special_permission">Special Permission</a></li>  
+                        </ul>
+                        
+                    </li>   
+                    <li>
+                        <a>
+                            <i class="icon-link menu-icon"></i><span class="nav-text">Reports</span>
+                        </a>
+                    </li> 
+                </ul>
+            </div>
+        </div>
+        <!--**********************************
+            Sidebar end
+        ***********************************-->
+
+        <!--**********************************
+            Content body start
+        ***********************************-->
+        <div class="content-body" style="margin-left:12.1875rem;">
+             
+            <div class="container-fluid" style="padding: 0px 30px 0;">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card" style="height:100%;">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-12" style="background-color: #e8e8e8;">
+                                        <div class="row">
+                                            <div class="col-3" style="margin-top: 1%;">
+                                                <div class="input-group mb-3">
+                                                    <form id="upload-file" method="post" enctype="multipart/form-data">
+                                                    {% csrf_token %}
+                                                        <div class="custom-file">
+                                                            <input type="file" class="custom-file-input" name="file">
+                                                            <label class="custom-file-label" id="file_name_display">Choose file</label>                                       
+                                                        </div>
+                                                    </div>
+                                                    
+                                                
+                                            </div>
+                                            <div class="col-2" style="margin-top: 1%;">
+                                                <button id="upload-file-btn" class="btn mb-1 btn-info"type="button">Process Input</button> 
+                                            </div>
+                                            <div class="col-2" style="margin-top: 1%;">
+
+                                                <button id="upload-btn-load" class="btn mb-1 btn-info"type="button">Load</button> 
+                                            </div>
+                                             </form>   
+                                                         
+                                            <div class="col-1" style="margin-top: 1%;">
+                                                <div class="row">
+                                                    <div calss="col-5">
+                                                       <a href="#"> <span class="fa fa-arrow-down" style="font-size: 35px;">&nbsp;</span></a>
+                                                    </div> 
+                                                    <div calss="col-5">
+                                                        <a href="#"><span class="fa fa-arrow-up" style="font-size: 35px;"></span></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-1" style="margin-top: 1%;">
+                                                <div class="row">
+                                                    <div calss="col-5">
+                                                        <a href="#"><span class="fa fa-plus" style="font-size: 35px;">&nbsp;</span></a>
+                                                    </div> 
+                                                    <div calss="col-5">
+                                                        <a href="#"><span class="fa fa-minus" style="font-size: 35px;"></span></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                                              
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <!--<div class="col-1" style="max-height: -webkit-fill-available;    overflow-y: auto;" id="image_push">
+
+                                    </div> -->
+
+                                     
+                                    <div class="col-6" id="image_view_" style="height:600px;    overflow-y: auto;"> 
+                                        <!--<embed src="" width="100%" height="100%" id="image_view_" style='border:1px solid black;'>-->
+
+                                            
+                                     </div> 
+                                     <div class="col-1"></div>
+                                    <div class="col-5"> 
+                                        {% csrf_token %}
+                                        <div class="row">
+                                            <div class="col-3 self-align-center"> 
+                                                <div class="" style="margin-top: 3%;">Template ID:</div>
+                                            </div>
+                                            <div class="col-5 self-align-center">
+                                                <input type="text" class="form-control" id="template_id"style="height:10px;">
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="row">
+                                            <div class="col-3 self-align-center"> 
+                                                <div class="" style="margin-top: 2%;">Template Name:</div>
+                                            </div>
+                                            <div class="col-5 self-align-center"> 
+                                                <input type="text" class="form-control" id="template_name"style="height:10px;">
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="row">
+                                            <div class="col-3 self-align-center"> 
+                                                <div class="" style="margin-top: 2%;">Description:</div>
+                                            </div>
+                                            <div class="col-5 self-align-center"> 
+                                                <input type="text" class="form-control" id="desc"style="height:10px;">
+                                            </div>
+                                        </div> 
+                                        <br>
+                                        <div class="row">
+                                            <div class="col-3 self-align-center"> 
+                                                <div class="" style="margin-top: 2%;">Process ID:</div>
+                                            </div>
+                                            <div class="col-5 self-align-center"> 
+                                                <input type="text" class="form-control" id="process_id"style="height:10px;">
+                                            </div>
+                                        </div>
+
+                                        <br><br>
+                                        <div class="row">
+                                            <textarea id="text" rows="15" cols="70"></textarea>
+                                        </div>
+
+                                        
+                                        <br><br> 
+                                        <div class="row">
+                                            <div class="col-6"></div>
+                                            <div class="col-5 self-align-center"> 
+                                            <form method="post">
+                                             
+                                            <input type="button" class="btn mb-1 btn-warning" value=" Create " id= "submit_temp">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br><br>
+            </div>  
+         
+            
+        </div>
+
+    <!--**********************************
+        Main wrapper end
+    ***********************************-->
+
+    <!--**********************************
+        Scripts
+    ***********************************-->
+    <script src="{% static 'plugins/common/common.min.js' %}"></script>
+    <script src="{% static 'js/custom.min.js' %}"></script>
+    <script src="{% static 'js/settings.js' %}"></script>
+    <script src="{% static 'js/gleek.js' %}"></script>
+    <script src="{% static 'js/styleSwitcher.js' %}"></script>
+    <script src="{% static 'plugins/highlightjs/highlight.pack.min.js' %}"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="{% static '/plugins/tables/js/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static '/plugins/tables/js/datatable/dataTables.bootstrap4.min.js' %}"></script>
+    <script src="{% static '/plugins/tables/js/datatable-init/datatable-basic.min.js' %}"></script>
+    <script> 
+        (function($) {
+        "use strict"
+
+            new quixSettings({
+                version: "light", //2 options "light" and "dark"
+                layout: "vertical", //2 options, "vertical" and "horizontal"
+                navheaderBg: "color_1", //have 10 options, "color_1" to "color_10"
+                headerBg: "color_1", //have 10 options, "color_1" to "color_10"
+                sidebarStyle: "full", //defines how sidebar should look like, options are: "full", "compact", "mini" and "overlay". If layout is "horizontal", sidebarStyle won't take "overlay" argument anymore, this will turn into "full" automatically!
+                sidebarBg: "color_1", //have 10 options, "color_1" to "color_10"
+                sidebarPosition: "fixed", //have two options, "static" and "fixed"
+                headerPosition: "fixed", //have two options, "static" and "fixed"
+                containerLayout: "wide",  //"boxed" and  "wide". If layout "vertical" and containerLayout "boxed", sidebarStyle will automatically turn into "overlay".
+                direction: "ltr" //"ltr" = Left to Right; "rtl" = Right to Left
+            });
+
+
+        })(jQuery);
+    </script>
+    <script type="text/javascript">
+        function image_push()
+        {   
+            var temp = "<img src='images/image.jpg' style='height:80px;border-style: dashed;width:70px;";
+            var temp1 = "";
+
+            for (var i = 0; i < 20; i++) {
+                temp1 = temp1 + temp + "' id=" + i +" onclick='image_view(this.id)'><br><br>";
+            }
+            document.getElementById('image_push').innerHTML = temp1;
+        }
+        function image_view(id)
+        {
+            var src = document.getElementById(id).src; 
+            document.getElementById('image_view_').innerHTML = "<img src='" + src + "' style='height:100%;width:100%;'>";
+        }
+
+        $('#upload-file-btn').click(function(){
+            var form_data = new FormData($('#upload-file')[0]);
+            $('#file_name_display').text(FormData[0]);
+            $.ajax({
+            type: 'POST',
+            url: 'pdf_preprocess',
+            data: form_data,
+            contentType: false,
+            cache: false,
+            processData: false,
+            success: function(data) {
+                alert("Preprocessing Completed"); 
+                var imag = document.getElementById('image_view_');
+                var temp="";
+                for (var i = 0; i < data.image.length; i++)
+                {
+                    temp = temp + "<img src='" + data.image[i] + "' id='" + data.image[i] +"' class='img-responsive' onclick='image_view_(this.id);'><br><br>" 
+                }
+                imag.innerHTML = temp; 
+
+
+            },
+        });
+        });
+
+
+
+        function image_view_(id)
+        {
+            var src = document.getElementById(id).src;
+            //document.getElementById('image_view_').innerHTML = "<img src='" + src + "' style='height:100%;width:100%;'>";
+
+            var res = src.split("/"); 
+            alert(res[4]);
+
+            $.ajax({
+
+                type : 'POST',
+                url : 'template_create_process',
+                data :{
+                    img_name : res[4],
+                csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
+                },
+                success:function(data){ 
+                    
+                } 
+            })
+        } 
+
+        $('#submit_temp').click(function(){
+            var t_id = $('#template_id').val()
+            var t_name = $('#template_name').val()
+            var desc = $('#desc').val()
+            var p_id = $('#process_id').val()
+            $.ajax({
+
+                type : 'POST',
+                url : 'template_create_details_insert',
+                data :{
+                    t_id : t_id,t_name : t_name,desc:desc,p_id:p_id,
+                csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
+                },
+                success:function(data){ 
+                    alert("Template Created");
+                    location.reload();
+                } 
+            })
+        });
+
+        $('#upload-btn-load').click(function(){
+            $.ajax({
+            type: 'POST',
+            url: 'pdf_preprocess_temp',
+            data: { 
+                csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
+                },
+            success: function(data) {
+                
+
+                var imag = document.getElementById('image_view_');
+                var temp="";
+                for (var i = 0; i < data.image.length; i++)
+                {
+                    temp = temp + "<img src='" + data.image[i] + "' id='" + data.image[i] +"' class='img-responsive' onclick='image_view_(this.id);'><br><br>" 
+                }
+                imag.innerHTML = temp;
+
+                
+                $.get("/static/codinates.txt", function(data) {
+                  $('#text').val(data);
+                }, 'text');
+            },
+        });
+        });
+
+
+    </script>
+
+</body>
+
+</html>

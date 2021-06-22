@@ -1,0 +1,8 @@
+name,age/gender,patienttype,address,phone,compnay/tpa,statecode,billnumber,billdate,admissiondate,dischargereq,ward,bed,doctor,ref.no,Date,number,statename,code
+,sex,,add,,,,,date,,,,,,,,,,
+,DOB,,,,,,,,,,,,,,,,,
+,dob,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,dat,,,
+,,,,,,,,,,,,,,,,num,,
+dname,,,,,,,,,,,,,,,,,,
+,DateOfBirth,,,,,,,,,,,,,,,,,

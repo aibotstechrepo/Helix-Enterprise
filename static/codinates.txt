@@ -1,0 +1,9 @@
+<layout>
+	<area>[(785, 405), (1065, 678)]</area>
+	<label>
+		<area>[(831, 525), (914, 615)]</area>
+	</label>
+	<data>
+		<area>[(929, 525), (1018, 635)]</area>
+	</data>
+</layout>

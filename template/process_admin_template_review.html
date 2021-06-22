@@ -1,0 +1,582 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Helix OCR</title>
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/AiBots.ico' %}">
+    <!-- Custom Stylesheet -->
+    <link rel="stylesheet" href="{% static 'plugins/highlightjs/styles/darkula.css' %}">
+    <link href="{% static '/plugins/tables/css/datatable/dataTables.bootstrap4.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <!--<style type="text/css">
+    /* Track */
+    ::-webkit-scrollbar-track {
+      background: #f1f1f1; 
+    }
+     
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+      background: #888; 
+    }
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+      background: #555; 
+    }
+
+    ::-webkit-scrollbar {
+    height: 4px;              /* height of horizontal scrollbar ← You're missing this */
+    width: 4px;               /* width of vertical scrollbar */
+    border: 1px solid #d5d5d5;
+    }
+    </style>-->
+
+</head>
+
+<body>
+
+    <!--*******************
+        Preloader start
+    ********************-->
+    <div id="preloader">
+        <div class="loader">
+            <svg class="circular" viewBox="25 25 50 50">
+                <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="3" stroke-miterlimit="10" />
+            </svg>
+        </div>
+    </div>
+    <!--*******************
+        Preloader end
+    ********************-->
+
+    
+    <!--**********************************
+        Main wrapper start
+    ***********************************-->
+    <div id="main-wrapper">
+
+        <!--**********************************
+            Nav header start
+        ***********************************-->
+        <div class="nav-header" style="background-color: #f8f9fa;height:4.5rem;">
+            <div class="brand-logo">
+                <a href="dashboard.html">
+                    <b class="logo-abbr"><img src="{% static 'images/AiBots.ico' %}" alt=""> </b>
+                    <span class="logo-compact"><img src="{% static 'images/AIBOTSTECH.png' %}" alt=""></span>
+                    <span class="brand-title">
+                        <img src="{% static 'images/AIBOTSTECH.png' %}" alt="" width="90%">
+                    </span>
+                </a>
+            </div>
+        </div>
+        <!--**********************************
+            Nav header end
+        ***********************************-->
+
+        <!--**********************************
+            Header start
+        ***********************************-->
+        <div class="header" style="">    
+            <div class="header-content clearfix">
+                
+                <div class="nav-control">
+                    <div class="hamburger">
+                        <span class="toggle-icon"><i class="icon-menu"></i></span>
+                    </div>
+                </div>
+                <div class="header-left">
+                    <div class="input-group icons">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-transparent border-0 pr-2 pr-sm-3" id="basic-addon1"><i class="mdi mdi-magnify"></i></span>
+                        </div>
+                        <input type="search" class="form-control" placeholder="Search Dashboard" aria-label="Search Dashboard">
+                        <div class="drop-down   d-md-none">
+							<form action="#">
+								<input type="text" class="form-control" placeholder="Search">
+							</form>
+                        </div>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <ul class="clearfix">
+                        <li class="icons dropdown"><a href="javascript:void(0)" data-toggle="dropdown">
+                                <i class="mdi mdi-email-outline"></i>
+                                <span class="badge gradient-1 badge-pill badge-primary">3</span>
+                            </a>
+                            <div class="drop-down animated fadeIn dropdown-menu">
+                                <div class="dropdown-content-heading d-flex justify-content-between">
+                                    <span class="">3 New Messages</span>  
+                                    
+                                </div>
+                                <div class="dropdown-content-body">
+                                    <ul>
+                                        <li class="notification-unread">
+                                            <a href="javascript:void()">
+                                                <img class="float-left mr-3 avatar-img" src="{% static 'images/avatar/1.jpg' %}" alt="">
+                                                <div class="notification-content">
+                                                    <div class="notification-heading">Saiful Islam</div>
+                                                    <div class="notification-timestamp">08 Hours ago</div>
+                                                    <div class="notification-text">Hi Teddy, Just wanted to let you ...</div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li class="notification-unread">
+                                            <a href="javascript:void()">
+                                                <img class="float-left mr-3 avatar-img" src="{% static 'images/avatar/2.jpg' %}" alt="">
+                                                <div class="notification-content">
+                                                    <div class="notification-heading">Adam Smith</div>
+                                                    <div class="notification-timestamp">08 Hours ago</div>
+                                                    <div class="notification-text">Can you do me a favour?</div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:void()">
+                                                <img class="float-left mr-3 avatar-img" src="{% static 'images/avatar/3.jpg' %}" alt="">
+                                                <div class="notification-content">
+                                                    <div class="notification-heading">Barak Obama</div>
+                                                    <div class="notification-timestamp">08 Hours ago</div>
+                                                    <div class="notification-text">Hi Teddy, Just wanted to let you ...</div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:void()">
+                                                <img class="float-left mr-3 avatar-img" src="{% static 'images/avatar/4.jpg' %}" alt="">
+                                                <div class="notification-content">
+                                                    <div class="notification-heading">Hilari Clinton</div>
+                                                    <div class="notification-timestamp">08 Hours ago</div>
+                                                    <div class="notification-text">Hello</div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                    
+                                </div>
+                            </div>
+                        </li>
+                        <li class="icons dropdown"><a href="javascript:void(0)" data-toggle="dropdown">
+                                <i class="mdi mdi-bell-outline"></i>
+                                <span class="badge badge-pill gradient-2 badge-primary">3</span>
+                            </a>
+                            <div class="drop-down animated fadeIn dropdown-menu dropdown-notfication">
+                                <div class="dropdown-content-heading d-flex justify-content-between">
+                                    <span class="">2 New Notifications</span>  
+                                    
+                                </div>
+                                <div class="dropdown-content-body">
+                                    <ul>
+                                        <li>
+                                            <a href="javascript:void()">
+                                                <span class="mr-3 avatar-icon bg-success-lighten-2"><i class="icon-present"></i></span>
+                                                <div class="notification-content">
+                                                    <h6 class="notification-heading">Events near you</h6>
+                                                    <span class="notification-text">Within next 5 days</span> 
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:void()">
+                                                <span class="mr-3 avatar-icon bg-danger-lighten-2"><i class="icon-present"></i></span>
+                                                <div class="notification-content">
+                                                    <h6 class="notification-heading">Event Started</h6>
+                                                    <span class="notification-text">One hour ago</span> 
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:void()">
+                                                <span class="mr-3 avatar-icon bg-success-lighten-2"><i class="icon-present"></i></span>
+                                                <div class="notification-content">
+                                                    <h6 class="notification-heading">Event Ended Successfully</h6>
+                                                    <span class="notification-text">One hour ago</span>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:void()">
+                                                <span class="mr-3 avatar-icon bg-danger-lighten-2"><i class="icon-present"></i></span>
+                                                <div class="notification-content">
+                                                    <h6 class="notification-heading">Events to Join</h6>
+                                                    <span class="notification-text">After two days</span> 
+                                                </div>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                    
+                                </div>
+                            </div>
+                        </li>
+                        <!--<li class="icons dropdown d-none d-md-flex">
+                            <a href="javascript:void(0)" class="log-user"  data-toggle="dropdown">
+                                <span>English</span>  <i class="fa fa-angle-down f-s-14" aria-hidden="true"></i>
+                            </a>
+                            <div class="drop-down dropdown-language animated fadeIn  dropdown-menu">
+                                <div class="dropdown-content-body">
+                                    <ul>
+                                        <li><a href="javascript:void()">English</a></li>
+                                        <li><a href="javascript:void()">Dutch</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>-->
+                        <li class="icons dropdown">
+                            <div class="user-img c-pointer position-relative"   data-toggle="dropdown">
+                                <span class="activity active"></span>
+                                <img src="{% static 'images/admin.png' %}" height="40" width="40" alt="">
+                            </div>
+                            <div class="drop-down dropdown-profile   dropdown-menu">
+                                <div class="dropdown-content-body">
+                                    <ul>
+                                        <li>
+                                            <a href="app-profile.html"><i class="icon-user"></i> <span>Profile</span></a>
+                                        </li>
+                                        <li>
+                                            <a href="email-inbox.html"><i class="icon-envelope-open"></i> <span>Inbox</span> <div class="badge gradient-3 badge-pill badge-primary">3</div></a>
+                                        </li>
+                                        
+                                        <hr class="my-2">
+                                        <li>
+                                            <a href="page-lock.html"><i class="icon-lock"></i> <span>Lock Screen</span></a>
+                                        </li>
+                                        <li><a href="page-login.html"><i class="icon-key"></i> <span>Logout</span></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!--**********************************
+            Header end ti-comment-alt
+        ***********************************-->
+
+        <!--**********************************
+            Sidebar start
+        ***********************************-->
+        <div class="nk-sidebar" style="top:4.5rem;">           
+            <div class="nk-nav-scroll">
+                <ul class="metismenu" id="menu">
+                    <li>
+                        <a>
+                            <i class="icon-link menu-icon"></i><span class="nav-text">Dashboard</span>
+                        </a>
+                    </li> 
+
+                    <li>
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false"> 
+                            <i class="icon-note menu-icon"></i><span class="nav-text">Template</span>
+                        </a>
+                        
+                        <ul aria-expanded="false">
+                            <li><a href="/process_admin_template_create">Create</a></li>
+                            <li><a href="/view_number_of_templates">View All</a></li> 
+                            <li><a href="#">Repository</a></li>
+                        </ul>
+                        
+                    </li>  
+                    <li>
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <i class="icon-notebook menu-icon"></i><span class="nav-text">Approvals</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Template Approve</a>
+                                <ul aria-expanded="false">
+                                    <li><a href="./page-error-404.html">Pending</a></li>
+                                    <li><a href="./page-error-403.html">Approval</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <ul aria-expanded="false">
+                            <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Schedular Approve</a>
+                                <ul aria-expanded="false">
+                                    <li><a href="/process_admin_schedular_pending">Pending</a></li>
+                                    <li><a href="./page-error-403.html">Approval</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false"> 
+                            <i class="icon-note menu-icon"></i><span class="nav-text">User Management</span>
+                        </a>
+                        
+                        <ul aria-expanded="false">
+                            <li><a href="/process_admin">Create User</a></li>
+                            <li><a href="/process_admin_user_view">View All</a></li>
+                            <li><a href="/process_admin_user_special_permission">Special Permission</a></li>  
+                        </ul>
+                        
+                    </li>   
+                    <li>
+                        <a>
+                            <i class="icon-link menu-icon"></i><span class="nav-text">Reports</span>
+                        </a>
+                    </li> 
+                </ul>
+            </div>
+        </div>
+        <!--**********************************
+            Sidebar end
+        ***********************************-->
+
+        <!--**********************************
+            Content body start
+        ***********************************-->
+        <div class="content-body" style="margin-left:12.1875rem;">
+               <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Data Table</h4>
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-bordered zero-configuration">
+                                        <thead>
+                                            <tr> 
+                                                <th width="10%">Template Id</th>
+                                                <th>Template Name</th>
+                                                <th>Template Description</th>
+                                                <th>Process Id</th>
+                                            </tr>
+                                        </thead> 
+                                        <tbody> 
+                                            
+                                            <!--<tr role="row" class="odd"> 
+                                                <td>3455</td>
+                                                <td>OLA</td>
+                                                <td>Descritpiton</td>
+                                                <td>22-9-19</td>
+                                                <td>Pending</td>
+                                                <td><a href="#" style="font-size:25px;" class="fa fa-file-text-o"></a>&emsp;<a href="#" class="fa fa-edit" style="font-size:25px;"></a>&emsp;<a href="#" style="font-size:25px;" class="fa fa-trash"></a></td> 
+                                            </tr> -->
+
+                                            {% for t in temp_details %}
+                                            <tr>
+                                                <td>{{ t.template_id }}</td>
+                                                <td>{{ t.template_name }}</td>
+                                                <td>{{ t.template_description }}</td>
+                                                <td>{{ t.process_id_t }}</td> 
+                                            </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                        <tfoot>
+                                            <tr> 
+                                                <th width="10%">Template Id</th>
+                                                <th>Template Name</th>
+                                                <th>Template Description</th>
+                                                <th>Process Id</th>
+                                            </tr>
+                                        </tfoot>
+                                    </table> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+        </div>
+
+    <!--**********************************
+        Main wrapper end
+    ***********************************-->
+
+    <!--**********************************
+        Scripts
+    ***********************************-->
+    <script src="{% static 'plugins/common/common.min.js' %}"></script>
+    <script src="{% static 'js/custom.min.js' %}"></script>
+    <script src="{% static 'js/settings.js' %}"></script>
+    <script src="{% static 'js/gleek.js' %}"></script>
+    <script src="{% static 'js/styleSwitcher.js' %}"></script>
+    <script src="{% static 'plugins/highlightjs/highlight.pack.min.js' %}"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="{% static '/plugins/tables/js/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static '/plugins/tables/js/datatable/dataTables.bootstrap4.min.js' %}"></script>
+    <script src="{% static '/plugins/tables/js/datatable-init/datatable-basic.min.js' %}"></script>
+    <script> 
+        (function($) {
+        "use strict"
+
+            new quixSettings({
+                version: "light", //2 options "light" and "dark"
+                layout: "vertical", //2 options, "vertical" and "horizontal"
+                navheaderBg: "color_1", //have 10 options, "color_1" to "color_10"
+                headerBg: "color_1", //have 10 options, "color_1" to "color_10"
+                sidebarStyle: "full", //defines how sidebar should look like, options are: "full", "compact", "mini" and "overlay". If layout is "horizontal", sidebarStyle won't take "overlay" argument anymore, this will turn into "full" automatically!
+                sidebarBg: "color_1", //have 10 options, "color_1" to "color_10"
+                sidebarPosition: "fixed", //have two options, "static" and "fixed"
+                headerPosition: "fixed", //have two options, "static" and "fixed"
+                containerLayout: "wide",  //"boxed" and  "wide". If layout "vertical" and containerLayout "boxed", sidebarStyle will automatically turn into "overlay".
+                direction: "ltr" //"ltr" = Left to Right; "rtl" = Right to Left
+            });
+
+
+        })(jQuery);
+    </script>
+    <script type="text/javascript">
+        function image_push()
+        {   
+            var temp = "<img src='images/image.jpg' style='height:80px;border-style: dashed;width:70px;";
+            var temp1 = "";
+
+            for (var i = 0; i < 20; i++) {
+                temp1 = temp1 + temp + "' id=" + i +" onclick='image_view(this.id)'><br><br>";
+            }
+            document.getElementById('image_push').innerHTML = temp1;
+        }
+        function image_view(id)
+        {
+            var src = document.getElementById(id).src; 
+            document.getElementById('image_view_').innerHTML = "<img src='" + src + "' style='height:100%;width:100%;'>";
+        }
+
+        function submit_details()
+        {
+            var empid = $('#empid').val();
+            var userid = $('#userid').val();
+            var username = $('#username').val();
+            var role = $('#role').val();
+            var multirole = $('#multirole').val();
+            var userstatus = $('#userstatus').val();
+            var t_edit = $('#t_edit').val();
+            var t_create = $('#t_create').val();
+            var create = $('#create').val();
+            var edit = $('#edit').val();
+            var t_approve = $('#t_approve').val();
+            
+            
+            alert(t_approve+edit+create+t_create+t_edit+userstatus);
+            
+            
+            if ( $('#t_approve').val() == "on")
+            {
+                t_approve = "True";
+            }
+            else
+            {
+                t_approve = "False";
+            }
+            if ( $('#edit').val() == "on")
+            {
+                edit = "True";
+            }
+             else
+            {
+                edit = "False";
+            }
+            if ( $('#create').val() == "on")
+            {
+                create = "True";
+            }
+             else
+            {
+                create = "False";
+            }
+            if ( $('#t_create').val() == "on")
+            {
+                t_create = "True";
+            }
+             else
+            {
+                t_create = "False";
+            }
+            if ( $('#t_edit').val() == "on")
+            {
+                t_edit = "True";
+            }
+             else
+            {
+                t_edit = "False";
+            }
+            if ( $('#multirole').val() == "on")
+            {
+                multirole = "True";
+            }
+             else
+            {
+                multirole = "False";
+            }
+            
+
+            
+            $.ajax({
+
+                type : 'POST',
+                url : 'application_admin_user_create',
+                data :{
+                    empid : empid,userid : userid, username:username, role: role, userstatus:userstatus, multirole : multirole,t_approve:t_approve,edit:edit,create:create,t_create : t_create,t_edit:t_edit,
+                csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
+                },
+                success:function(data){ 
+                    location.reload();
+                } 
+            })
+        }
+        $( "#role" ).change(function() {
+            $('#special_role').html("");
+          if("Application Admin" == ($('#role').val()) )
+          {
+            //alert("selected");
+            $("#multirole").prop( "checked", true ),
+            $('#special_role').html("");
+          }
+          else if( "Process Admin" == ($('#role').val()) )
+          { 
+            $("#multirole").prop( "checked", false ),
+            $("#multirole").attr("disabled", false);
+
+            //$('#special_role').html("<div class='row'><div class='col-2'></div><div class='col-2 col-form-label'><label>Create Process:</label></div><div class='col-1'><input type='checkbox'  class='form-check-input' id='create'></div> &emsp; <div class='col-2 col-form-label'><label>Edit Process:</label></div><div class='col-2'><input type='checkbox'  class='form-check-input' id='edit'></div></div>");
+          }
+          else if( "User" == ($('#role').val()) )
+          { 
+            $("#multirole").prop( "checked", false ),
+            $("#multirole").attr("disabled", false);
+            //$('#special_role').html("<div class='row'><div class='col-2'></div><div class='col-2 col-form-label'><label>Template Approve:</label></div><div class='col-1'><input type='checkbox'  class='form-check-input' id='approve'></div> &emsp; <div class='col-2 col-form-label'><label>Template Edit:</label></div><div class='col-1'><input type='checkbox'  class='form-check-input' id='t_edit'></div> &emsp; <div class='col-1 col-form-label'><label>Create:</label></div><div class='col-1'><input type='checkbox'  class='form-check-input' id='t_create'></div></div>");
+          }
+
+        });
+        
+         $('#multirole').click(function(){
+            if($(this).prop("checked") == true){
+
+                if( "User" == ($('#role').val()) )
+                {
+                    $('#special_role').html("<div class='row'><div class='col-4'></div><div class='col-2 col-form-label'><label>Template Approve:</label></div><div class='col-1'><input type='checkbox'  class='form-check-input' id='t_approve'></div></div><div class='row'><div class='col-4'></div><div class='col-2 col-form-label'><label>Template Edit:</label></div><div class='col-1'><input type='checkbox'  class='form-check-input' id='t_edit'></div></div><div class='row'><div class='col-4'></div><div class='col-2 col-form-label'><label>Template Create:</label></div><div class='col-1'><input type='checkbox' class='form-check-input' id='t_create'></div></div>");
+                }
+                else if( "Process Admin" == ($('#role').val()))
+                {
+                    $('#special_role').html("<div class='row'><div class='col-4'></div><div class='col-2 col-form-label'><label>Create Process:</label></div><div class='col-1'><input type='checkbox'  class='form-check-input' id='create'></div></div><div class='row'><div class='col-4'></div><div class='col-2 col-form-label'><label>Edit Process:</label></div><div class='col-2'><input type='checkbox'  class='form-check-input' id='edit'></div></div><div class='row'><div id='process_admin'></div></div>");
+                }
+            }
+            else if($(this).prop("checked") == false){
+                $('#special_role').html("")
+            }
+
+
+        });
+        function checkbox_fun(id)
+        {
+            var checkBox = document.getElementById(id);
+            if (checkBox.checked == true){
+                if ( id == "create"){
+                document.getElementById("process_admin").innerHTML="<div class='col-2'></div><div class='col-2'><button type='button' class='btn mb-1 btn-primary btn-xs'>Create Process</button></div>";
+                }
+                else if ( id == "edit")
+                {
+                    document.getElementById("process_admin").innerHTML="<div class='col-2'></div><div class='col-2'><button type='button' class='btn mb-1 btn-primary btn-xs'>Edit Process</button></div>";
+                }
+              } else {
+                document.getElementById("process_admin").innerHTML ="";
+              }
+        }
+        
+ 
+    </script>
+
+</body>
+
+</html>

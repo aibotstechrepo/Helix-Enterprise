@@ -1,0 +1,1836 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <!-- <title>Helix OCR</title> -->
+    <!-- Favicon icon -->
+    <!-- <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/AiBots.ico' %}"> -->
+    <!-- Custom Stylesheet -->
+    <link rel="stylesheet" href="{% static '/plugins/highlightjs/styles/darkula.css' %}">
+    <link href="{% static '/plugins/tables/css/datatable/dataTables.bootstrap4.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Orbitron&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
+    <!--<style type="text/css">
+    /* Track */
+    ::-webkit-scrollbar-track {
+      background: #f1f1f1; 
+    }
+     
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+      background: #888; 
+    }
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+      background: #555; 
+    }
+
+    ::-webkit-scrollbar {
+    height: 4px;              /* height of horizontal scrollbar ← You're missing this */
+    width: 4px;               /* width of vertical scrollbar */
+    border: 1px solid #d5d5d5;
+    }
+    </style>-->
+    <style type="text/css">
+    .disbalecustom{
+        pointer-events : none;
+        cursor: default;
+        color: #cacaca;
+    }
+    .enablesutaom{
+        color: black;
+    }
+    </style>
+
+        <style type="text/css">
+  .modal {
+    display:    none;
+    position:   fixed;
+    z-index:    1000;
+    top:        0;
+    left:       0;
+    height:     100%;
+    width:      100%;
+    background: rgba( 255, 255, 255, .8 ) 
+                url('/static/images/preloader.gif') 
+                50% 50% 
+                no-repeat; 
+}
+
+/* When the body has the loading class, we turn
+   the scrollbar off with overflow:hidden */
+body.loading .modal {
+    overflow: hidden;   
+}
+
+/* Anytime the body has the loading class, our
+   modal element will be visible */
+body.loading .modal {
+    display: block;
+}
+  </style>
+
+</head> 
+
+<body>
+
+    <!--*******************
+        Preloader start
+    ********************-->
+    <div id="preloader">
+        <div class="loader">
+            <svg class="circular" viewBox="25 25 50 50">
+                <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="3" stroke-miterlimit="10" />
+            </svg>
+        </div>
+    </div>
+    <!--*******************
+        Preloader end
+    ********************-->
+
+    
+    <!--**********************************
+        Main wrapper start
+    ***********************************-->
+    <div id="main-wrapper">
+
+        <!--**********************************
+            Nav header start
+        ***********************************-->
+        <div class="nav-header" style="background-color: #ffffff;height:3.9rem;box-shadow: inset 1px 0px 0px 0px #a99de7;">
+            <div class="brand-logo">
+                <a href="dashboard.html">
+                    <b class="logo-abbr"><img src="{% static 'images/AiBots.ico' %}" alt=""> </b>
+                    <span class="logo-compact"><img src="{% static 'images/itc-logo.png' %}" alt=""></span>
+                    <span class="brand-title">
+                        <img src="{% static 'images/itc-logo.png' %}" alt="" width="90%">
+                    </span>
+                </a>
+                <hr style="margin-top: 5px;margin-bottom:none;">
+            </div>
+        </div>
+
+        <!--**********************************
+            Nav header end
+        ***********************************-->
+
+        <!--**********************************
+            Header start
+        ***********************************-->
+        <div class="header" style="background-color: #03306f;box-shadow: 0px 0px 41px -8px #a99de7;">    
+            <div class="header-content clearfix">
+                
+                <div class="nav-control">
+                    <div class="hamburger">
+                        <span class="toggle-icon" ><i class="icon-menu" style="color:fcf7f8;"></i></span>
+                    </div>
+                </div>
+                <div class="header-left">
+                    <div class="input-group icons" style="width: 140%;margin-top: 8px;">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-transparent border-0 pr-2 pr-sm-3" id="basic-addon1" style="padding: 0.175rem 0.75rem;"><i class="mdi mdi-magnify" style="color:white;"></i></span>
+                        </div>
+                        <input type="search" class="form-control" placeholder="Search Dashboard" aria-label="Search Dashboard">
+                        <div class="drop-down   d-md-none">
+							<form action="#">
+								<input type="text" class="form-control" placeholder="Search">
+							</form>
+                        </div>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <ul class="clearfix">
+                        <li class="icons dropdown"><a href="#" data-toggle="dropdown">
+                                <i class="mdi mdi-email-outline" style="color:white;"></i>
+                                <span class="badge gradient-1 badge-pill badge-primary" style="color:#0d1456;">3</span>
+                            </a>
+                        </li>
+                        <li class="icons dropdown"><a href="javascript:void(0)" data-toggle="dropdown">
+                                <i class="mdi mdi-bell-outline" style="color:white;"></i>
+                                <span class="badge badge-pill gradient-2 badge-primary" style="color:#0d1456 !important;">3</span>
+                            </a> 
+                        </li>
+                        <!--<li class="icons dropdown d-none d-md-flex">
+                            <a href="javascript:void(0)" class="log-user"  data-toggle="dropdown">
+                                <span>English</span>  <i class="fa fa-angle-down f-s-14" aria-hidden="true"></i>
+                            </a>
+                            <div class="drop-down dropdown-language animated fadeIn  dropdown-menu">
+                                <div class="dropdown-content-body">
+                                    <ul>
+                                        <li><a href="javascript:void()">English</a></li>
+                                        <li><a href="javascript:void()">Dutch</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>-->
+                        <li class="icons dropdown">
+                            <div class="user-img c-pointer position-relative"   data-toggle="dropdown">
+                                <span class="activity active"></span>
+                                <img src="{% static 'images/admin.png' %}" height="40" width="40" alt="">
+                            </div> 
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        
+        </div>
+        
+
+        <!--**********************************
+            Header end ti-comment-alt
+        ***********************************-->
+
+        <!--**********************************
+            Sidebar start
+        ***********************************-->
+        
+        <div class="nk-sidebar" style="top:3.9rem;box-shadow: 0px 0px 41px -23px #a99de7;">           
+            <div class="nk-nav-scroll">
+                <ul class="metismenu" id="menu">
+                    <li>
+                        <a href="dashboard.html">
+                            <i class="icon-home menu-icon" style="font-size: 1.2rem;"></i><span class="nav-text">Dashboard</span>
+                        </a>
+                        <!--<ul aria-expanded="false">
+                            <li><a href="./index.html">Home 1</a></li>
+                            <li><a href="./index-2.html">Home 2</a></li> 
+                        </ul>-->
+                    </li>
+                    <li>
+                        <a href="/user_process_new_task">
+                            <i class="icon-pencil menu-icon" style="font-size: 1.2rem;"></i><span class="nav-text">Task</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/queue">
+                            <i class="icon-note menu-icon" style="font-size: 1.2rem;"></i><span class="nav-text">Review</span>
+                        </a>
+                    </li>
+                    <!--<li>
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false"> 
+                            <i class="icon-note menu-icon" style="font-size: 1.2rem;"></i><span class="nav-text">Complex Task</span>
+                        </a>
+                            <ul aria-expanded="false">
+                                <li><a href="/user_process_new_task">New</a></li>
+                                <li><a href="/queue">Queue</a></li>
+                                <li><a href="#">Pending Review</a></li>
+                                <li><a href="#">Reviewed</a></li>
+                            </ul>
+
+                    </li>-->
+                    <li>
+                        <a>
+                            <i class="icon-docs menu-icon" style="font-size: 1.2rem;"></i><span class="nav-text">Schedular</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a>
+                            <i class="icon-link menu-icon" style="font-size: 1.2rem;"></i><span class="nav-text">Reports</span>
+                        </a>
+                    </li> 
+                </ul>
+            </div>
+        </div>
+        <!--**********************************
+            Sidebar end
+        ***********************************-->
+
+        <!--**********************************
+            Content body start
+        ***********************************-->
+
+
+
+        <div class="content-body" style="margin-left:12.2rem;">
+
+            <!--<div class="row page-titles mx-0">
+                <div class="col p-md-0">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="javascript:void(0)">Dashboard</a></li>
+                        <li class="breadcrumb-item active"><a href="javascript:void(0)">Home</a></li>
+                    </ol>
+                </div>
+            </div>
+             row -->
+
+            <div class="container-fluid" style="padding-left: 0px;padding-right:18px;padding-top: 25px;">
+                <div class="row" style="margin-bottom: -18px;">
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="card gradient-1" style="border-radius: 5px;    background-image: linear-gradient(230deg, #759bff, #843cf6);">
+                            <div class="card-body" style="padding: 0.8rem 1.81rem;">
+                                <div class="row">
+                                    <div class="col-8">
+                                        <div class="row">
+                                            <h3 class="card-title text-white">Data Extracted</h3>
+                                        </div>
+                                        <div class="row">                    
+                                            <h2 class="text-white" id="data_exracted">85%</h2>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <span class="float-right display-5 opacity-5"><i class="fa fa-search"></i></span>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="card gradient-2" style="border-radius: 5px;  background-image:  linear-gradient(230deg, #6fd96f, #108210);">
+                            <div class="card-body" style="padding: 0.8rem 1.81rem;">
+                                <div class="row">
+                                    <div class="col-8">
+                                        <div class="row">
+                                            <h3 class="card-title text-white">Data Accuracy</h3>
+                                        </div>
+                                        <div class="row">                    
+                                            <h2 class="text-white" id="data_accuracy">70%</h2>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <span class="float-right display-5 opacity-5"><i class="fa fa-bolt"></i></span>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="card gradient-3" style="border-radius: 5px;   background-image: linear-gradient(230deg, #ffc480, #ff763b);">
+                            <div class="card-body" style="padding: 0.8rem 1.81rem;">
+                                <div class="row">
+                                    <div class="col-8">
+                                        <div class="row">
+                                            <h3 class="card-title text-white">Noise Percentage</h3>
+                                        </div>
+                                        <div class="row">                    
+                                            <h2 class="text-white" id="noise_percentage">50%</h2>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <span class="float-right display-5 opacity-5"><i class="fa fa-exclamation"></i></span>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="card gradient-4" style="border-radius: 5px;        background-image: linear-gradient(230deg, #ab4a9fa1, #843cf6);">
+                            <div class="card-body" style="padding: 0.8rem 1.81rem;">
+                                <div class="row">
+                                    <div class="col-9">
+                                        <div class="row">
+                                            <h3 class="card-title text-white">File Information</h3>
+                                        </div>
+                                        <div class="row"> 
+                                            <div class="col-9" style="margin-left: -15px;top: 10px;">  
+                                                    <h5 style="color:white;">No of Pages:</h5> 
+                                            </div>
+                                            <div class="col-3" style="margin-left: -55px;top: 10px;">  
+                                                    <h3 style="color:white;" id="file_info">10</h3> 
+                                            </div>
+                                            
+                                        </div>
+
+
+                                    </div>
+                                    <div class="col-3">
+                                        <span class="float-right display-5 opacity-5"><i class="fa fa-file-text-o"></i></span>
+                                    </div>
+
+                                    
+                                </div> 
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                     <div class="col-12">
+                        <div class="card" style="box-shadow: 1px 2px 41px -20px #a99de7;border-radius: 4px;margin-bottom: 8px;">
+                            <div class="card-body" style="padding:0px 15px;">
+                                <div class="row" style="height: 63px;">
+                                    <div class="col-3"  style="border-right: 1px solid rgba(0, 0, 0, 0.125);margin-top: 5px;border-bottom: 1px solid rgba(0, 0, 0, 0.125);">
+                                        <div class="row" style="padding: 4px 30px;">
+                                            <div class="col-4"  style="text-align: center;"><a href="#" style="color: black;" onclick="zoomin()"><i class="fa fa-search-plus" style="font-size:30px;" id="zoomin" ></i></a><div style="font-size:10px;">Zoom in</div></div>
+                                            <div class="col-4"  style="text-align: center;"><a href="#" style="color: black;" onclick="zoomout()"><i class="fa fa-search-minus" style="font-size:30px;" id="zoomout" ></i></a><div style="font-size:10px;">Zoom out</div></div>
+                                            <div class="col-4"  style="text-align: center;"><a href="#" style="color: black;"><i class="fa fa-refresh" style="font-size:30px;"></i></a><div style="font-size:10px;">Reload</div></div>
+
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="col-3" style="border-right: 1px solid rgba(0, 0, 0, 0.125);margin-top: 5px;border-bottom: 1px solid rgba(0, 0, 0, 0.125);">
+                                        <div class="row" style="padding: 4px 30px;">
+                                            <div class="col-4" style="text-align: center;"><a href="#" class="disbalecustom" id="previouspage"><i class="fa fa-arrow-up" style="font-size:30px;" onclick="onclickvaldown()"></i></a><div style="font-size:10px;">Previous page</div></div> 
+                                            <div class="col-4" style="text-align: center;"><a href="#" class="disbalecustom" id="nextpage" ><i class="fa fa-arrow-down" style="font-size:30px;" onclick="nextpagefun()"></i></a><div style="font-size:10px;">Next page</div></div>
+                                            <div class="col-4" style="text-align: center;"><input type="checkbox" data-toggle="toggle" data-on="<i class='fa fa-th-large'></i>" data-off="<i class='fa fa-square-o'></i>" ><div style="font-size:10px;">Hilight</div></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-3" style="border-right: 1px solid rgba(0, 0, 0, 0.125);border-bottom: 1px solid rgba(0, 0, 0, 0.125);">
+                                        <div class="row" style="padding: 9px 40px;">
+                                            <div class="col-4" style="text-align: center;"><a href="#" onclick="pushtoexcel()"><i class="fa fa-file-excel-o" style="color:black;font-size:30px;"></i></a><div style="font-size:10px;">Excel</div></div>
+                                            <div class="col-4" style="text-align: center;"><i class="fa fa-file-excel-o" style="font-size:30px;"></i><div style="font-size:10px;">CSV</div></div>
+                                            <div class="col-4" style="text-align: center;"><i class="fa fa-file-text-o" style="font-size:30px;"></i><div style="font-size:10px;">Text File</div></div> 
+                                        </div>
+                                    </div>
+                                    <div class="col-3" style="border-bottom: 1px solid rgba(0, 0, 0, 0.125);">
+                                        <div class="row" style="padding: 9px 40px;"> 
+                                            <div class="col-4" style="text-align: center;"><i class="fa fa-check" style="font-size:30px;"></i><div style="font-size:10px;">Approve</div></div>
+                                            <div class="col-4" style="text-align: center;"><i class="fa fa-times" style="font-size:30px;"></i><div style="font-size:10px;">Reject</div></div>
+                                            <div class="col-4" style="text-align: center;"><a href="#" onclick="retrain()"><i class="fa fa-cog" style="color:black;font-size:30px;"></i></a><div style="font-size:10px;">Train</div></div> 
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row" style="height: 16px;margin-top: 2px;margin-bottom: -2px;">
+                                    <div class="col-3"  style="     background-color: #efefc6;border-right: 1px solid rgba(0, 0, 0, 0.125);border-bottom: 1px solid rgba(0, 0, 0, 0.125);">
+                                        <div class="row">
+                                            <div class="col-12 text-center"><div style="font-family:'Orbitron', sans-serif;font-size:8px;"><b>I&ensp;M&ensp;A&ensp;G&ensp;E&ensp;&ensp;O&ensp;P&ensp;E&ensp;R&ensp;A&ensp;T&ensp;I&ensp;O&ensp;N</b></div></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-3" style="    background-color: #efefc6;border-right: 1px solid rgba(0, 0, 0, 0.125);border-bottom: 1px solid rgba(0, 0, 0, 0.125);">
+                                        <div class="row">
+                                            <div class="col-12 text-center"><div style="font-family:'Orbitron', sans-serif;font-size:8px;"><b>P&ensp;A&ensp;G&ensp;E&ensp;&ensp;N&ensp;A&ensp;V&ensp;I&ensp;G&ensp;A&ensp;T&ensp;I&ensp;O&ensp;N</b></div></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-3" style="    background-color: #efefc6;border-right: 1px solid rgba(0, 0, 0, 0.125);border-bottom: 1px solid rgba(0, 0, 0, 0.125);">
+                                        <div class="row">
+                                            <div class="col-12 text-center"><div style="font-family:'Orbitron', sans-serif;font-size:8px;"><b>E&ensp;X&ensp;P&ensp;O&ensp;R&ensp;T&ensp;&ensp;O&ensp;U&ensp;T&ensp;P&ensp;U&ensp;T</b></div></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-3" style="    background-color: #efefc6;border-bottom: 1px solid rgba(0, 0, 0, 0.125);">
+                                        <div class="row">
+                                            <div class="col-12 text-center"><div style="font-family:'Orbitron', sans-serif;font-size:8px;"><b>R&ensp;E&ensp;V&ensp;I&ensp;E&ensp;W</b></div></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                            <div class="card" style="box-shadow: 1px 2px 41px -20px #a99de7;border-radius: 0px;">  
+                                <div class="card-body" style="padding: 0.88rem 1.81rem;">
+                                    {% csrf_token %}  
+                                     
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="row">
+                                                <div class="col-1 border-right-0" style="border: 3px solid #dad5d5;height: 655px;overflow: auto;" id="imagegrid"> 
+                                                    <div class="row">
+                                                        <img src="{% static 'images/test.png'%}" class="rounded mx-auto d-block" style="width: 100%;border: dotted;">
+                                                    </div>
+                                                </div>
+                                                <div class="col-5" style="border: 3px solid #dad5d5;height: 655px;overflow: auto;" id="imagedisplay"> 
+                                                </div>
+                                                <div class="col-6 border-left-0" style="border: 3px solid #dad5d5;height: 655px;overflow: auto;">
+                                                    <div class="default-tab" style="margin-top: 12px;">
+                                                        <ul class="nav nav-tabs mb-3" role="tablist">
+                                                            <li class="nav-item"><a class="nav-link active" style="padding: 0.5rem 5rem;color:#03306f;" data-toggle="tab" href="#home">Label Data</a>
+                                                            </li>
+                                                            <li class="nav-item"><a class="nav-link" style="padding: 0.5rem 5rem;color:#03306f;" href="#tablecard">Table Data</a> 
+                                                            </li> 
+                                                            <li class="nav-item"><a class="nav-link" style="padding: 0.5rem 5rem;color:#03306f;" data-toggle="tab" href="#AddLabels">Add Labels</a></li>
+                                                        </ul>
+                                                        <div class="tab-content">
+                                                            <div class="tab-pane fade show active" id="home" role="tabpanel">
+                                                                <div class="p-t-15" id="datacol" style="height: 600px;overflow: auto;"> 
+                                                                </div>
+                                                            </div> 
+                                                            <div class="tab-pane fade" id="AddLabels" role="tabpanel">
+                                                                 <div class="row">
+                                                                    <div class="col-12">
+                                                                        <div class="float-right"><button class="btn btn-secondary" onclick="AddLabels()"><span class="btn-label"><i class="fa fa-plus"></i></span>&ensp;Add Labels</button></div>
+                                                                    </div>
+                                                                 </div>
+                                                                 <br>
+                                                                 <div class="row">
+
+                                                                    <div class="col-12">
+                                                                        <div class='row' id="HeaderDisplay" style="display:none;">
+                                                                            <div class='col-1'></div>
+                                                                            <div class='col-3'>
+                                                                                <h6 style='text-align:center;'>Label</h6>
+                                                                            </div>
+                                                                            <div class="col-3">
+                                                                                <h6 style='text-align:center;'>Sub-Label</h6>
+                                                                            </div>
+                                                                            <div class="col-3">
+                                                                                <h6 style='text-align:center;'>Add Sub-Label</h6>
+                                                                            </div>
+                                                                            <div class="col-2">
+                                                                                <h6 style='text-align:center;'>Occurance</h6>
+                                                                            </div>
+                                                                        </div><br>
+                                                                        <div id="AddLabelsHtml"></div>
+                                                                        <div class="row" id="ShowAdd" style="display:none;"><div class="col-12"><div class="float-right"><button class="btn btn-primary" onclick="AddLabelsToCsv()">Add Labels to engine</button></div></div></div>
+                                                                    </div>
+                                                                 </div>
+                                                            </div> 
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>  
+
+                                </div>
+                            </div>
+                        </div>
+                </div> 
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card" id="tablecard"> 
+                            <div class="card-header">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="row"> 
+                                            <h3 class="card-title">&emsp; Table Data</h3>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                                            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                                            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                                            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                                            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; &emsp;&emsp;&emsp;&emsp;&emsp; &emsp;&emsp;&emsp;&emsp;&emsp; &emsp;&emsp;&emsp;&emsp;&emsp; 
+                                            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                                            <h5 id="labeldatacurrentpage"></h5>
+                                        </div>
+                                        <hr>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <!--<div class="card-body" style="padding: 0rem 1.81rem;overflow: auto;">
+                                <div class="row">
+                                    <div class="col-8" style='height: 555px;'>
+                                        <div class="table-responsive border-right" style="border-right: 2px solid #edecf8">
+                                            <table class="table table-bordered">
+                                                <thead id="tablehead">
+                                                </thead>
+                                                <tbody id="tablebody">
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="col-4" style='height: 555px;'>
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered">
+                                                <thead id="tableheadmatched">
+                                                </thead>
+                                                <tbody id="tablebodymatched">
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>  
+                                </div>
+                            </div>-->
+                            <div class="card-body" style="padding: 0rem 1.81rem;overflow: auto;" >
+                                <div class='row'>
+                                    <div class='col-8' style='height: 555px;' id="FinalTableDisplay">
+                                    </div>
+
+                                    <div class='col-4' style='height: 555px;' id="FinalComparedData">
+                                        
+                                    </div>
+                                </div>     
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- #/ container -->
+        </div> 
+        
+        <input type="text" value="{{id}}" id="referenceid" hidden>
+        <input type="text" id="temptextbox" hidden>
+        <input type="text" id="pagenumber" value="-1" hidden>
+        <input type="text" id="totalnumberofpages" value="0" hidden>
+        <input type="text" id="tempTabledata" hidden>
+        <input type="text" id="TempInsertLabel" value="0" hidden>
+        <input type="text" id="NumberOfLabels" value="0" hidden>
+        
+        <!--**********************************
+            Content body end
+        ***********************************-->
+        
+        
+        <!--**********************************
+            Footer start
+        ***********************************-->
+        <!--<div class="footer">
+            <div class="copyright">
+                <p>Copyright &copy; Designed & Developed by <a href="https://themeforest.net/user/quixlab">Quixlab</a> 2018</p>
+            </div>
+        </div>-->
+        <!--**********************************
+            Footer end
+        ***********************************-->
+    </div>
+    <!--**********************************
+        Main wrapper end
+    ***********************************-->
+
+    <!--**********************************
+        Scripts
+    ***********************************-->
+    <script src="{% static 'plugins/common/common.min.js' %}"></script>
+    <script src="{% static 'js/custom.min.js' %}"></script>
+    <script src="{% static 'js/settings.js' %}"></script>
+    <script src="{% static 'js/gleek.js' %}"></script>
+    <script src="{% static 'js/styleSwitcher.js' %}"></script>
+    <script src="{% static '/plugins/highlightjs/highlight.pack.min.js' %}"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="{% static '/plugins/tables/js/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static '/plugins/tables/js/datatable/dataTables.bootstrap4.min.js' %}"></script>
+    <script src="{% static '/plugins/tables/js/datatable-init/datatable-basic.min.js' %}"></script>
+    <script src="{% static 'js/jquery.maphilight.js' %}"></script>
+    <script src="{% static 'js/bootstable.js' %}"></script>
+
+    <script>
+        (function($) {
+        "use strict"
+
+            new quixSettings({
+                version: "light", //2 options "light" and "dark"
+                layout: "vertical", //2 options, "vertical" and "horizontal"
+                navheaderBg: "color_1", //have 10 options, "color_1" to "color_10"
+                headerBg: "color_1", //have 10 options, "color_1" to "color_10"
+                sidebarStyle: "full", //defines how sidebar should look like, options are: "full", "compact", "mini" and "overlay". If layout is "horizontal", sidebarStyle won't take "overlay" argument anymore, this will turn into "full" automatically!
+                sidebarBg: "color_1", //have 10 options, "color_1" to "color_10"
+                sidebarPosition: "fixed", //have two options, "static" and "fixed"
+                headerPosition: "fixed", //have two options, "static" and "fixed"
+                containerLayout: "wide",  //"boxed" and  "wide". If layout "vertical" and containerLayout "boxed", sidebarStyle will automatically turn into "overlay".
+                direction: "ltr" //"ltr" = Left to Right; "rtl" = Right to Left
+            });
+
+
+        })(jQuery);
+    </script>
+    <script type="text/javascript">
+        function image_push()
+        {   
+            var temp = "<img src='images/image.jpg' style='height:80px;border-style: dashed;width:70px;";
+            var temp1 = "";
+
+            for (var i = 0; i < 20; i++) {
+                temp1 = temp1 + temp + "' id=" + i +" onclick='image_view(this.id)'><br><br>";
+            }
+            document.getElementById('image_push').innerHTML = temp1;
+        }
+        function image_view(id)
+        {
+            var src = document.getElementById(id).src; 
+            document.getElementById('image_view_').innerHTML = "<img src='" + src + "' style='height:100%;width:100%;'>";
+        }
+
+        /*$( document ).ready(function() {
+            $.ajax({
+
+                type : 'POST',
+                url : 'list_of_template',
+                data :{
+                csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
+                },
+                success:function(data){
+                    var t_temp = "<option>";
+                    var t1_temp = "";
+
+                    for ( var i = 0; i < data.length ;  i++)
+                    {
+                        t1_temp = t1_temp + t_temp + data[i] + "</option>";
+                    }
+                    $('#templates_details').html("<option>----Select----</option>"+t1_temp);
+                } 
+            });
+        });*/
+
+        $('#submit_task').click(function(){
+            var t_id = $('#t_id').val();
+            var t_name = $('#t_name').val();
+            var t_desc = $('#t_desc').val();
+            var templates_details = $('#templates_details').val(); 
+            var input_file_name = $('#input_file_name').val();
+            var output_file_name = $('#output_file_name').val();
+            var file_name_pattern = $('#file_name_pattern').val();
+            
+            $.ajax({
+
+                type : 'POST',
+                url : 'user_details',
+                data :{ t_id : t_id, t_name : t_name,t_desc: t_desc,templates_details: templates_details,input_file_name: input_file_name,output_file_name:output_file_name,file_name_pattern:file_name_pattern,
+                csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
+                },
+                success:function(data){
+                    //alert("Process Created");
+                    location.reload();
+
+                } 
+            });
+
+        });
+
+        function AddLabels()
+        {
+            $('#HeaderDisplay').show();
+
+            var t = $('#TempInsertLabel').val();
+
+            var LabelArray = [];
+
+            $('#AddLabelsHtml').append("<div class='row' id='RowVal"+t+"'><div class='col-1'><div  id='"+t+"' onclick='RemoveLabel(this.id)'><i class='fa fa-times' style='color:black;font-size:30px;'></i></div></div><div class='col-3' id='datacol"+t+"'></div><div class='col-3'><div id='dataSulcol"+t+"'></div></div><div class='col-3'><div id='NewSubText"+t+"'></div></div><div class='col-2'><div id='Occur"+t+"'></div></div></div>");
+
+            $.ajax({ 
+                type : 'POST',
+                url : '/FindListOfHeaders',
+                data :{
+                csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()  
+                },
+                success:function(data){
+                    // alert("Engine Trained SuccessFully");
+                    var temp = "<option disabled selected>--- Select Label ---</option>";
+                    for(var i = 0;i<data['Labels'].length;i++)
+                    {
+                        LabelArray.push(data['Labels'][i]);
+
+                        temp = temp + "<option value="+data['Labels'][i]+">" + data['Labels'][i] + "</option>";
+                    }  
+                    $('#datacol'+t).append("<div class='form-group'><select class='form-control' id='Label"+t+"' onchange='SubLabels(this.value,this.id);'>"+temp+"<option value='NewLabel'>--- Add New Label ---</select></div>");
+
+                    
+                    // window.location = "/queue";
+                }
+            });
+
+            if ( t == 0)
+            {
+                $('#ShowAdd').show();
+            }
+
+
+            // $('#datacol1').append('<div id="NewLabel'+t+'_t"><div class="row"><div class="col-6"><label>Label</label></div><div class="col-6"><label>Seperator</label></div></div><div class="row" style="margin-bottom: 5px;"><div class="col-6"><input type="text" class="form-control" style="width: 100%;height: 0%;" id="Label_train_'+t+'" onclick="hilighttest()" ></div><div class="col-3"><input type="text" class="form-control" style="width: 100%;height: 0%;" id="sep_train_'+t+'"></div><div class="col-2"><div  id="NewLabel'+t+'" onclick="RemoveLabel(this.id)"><i class="fa fa-times" style="color:black;font-size:30px;"></i></div></div></div></div>');
+            $('#TempInsertLabel').val(parseInt($('#TempInsertLabel').val()) +  1);
+        }
+        function SubLabels(va,LabId)
+        {
+            var LabId = LabId[LabId.length -1]
+            if ( va == "NewLabel")
+            {
+                $('#NewSubText'+LabId).html('<input type="text"  id="TextValLab'+ LabId+'" class="form-control">');
+                $('#dataSulcol'+LabId).html('<input type="text"  id="SubLable'+ LabId+'" class="form-control">');
+            }
+            else
+            {
+
+                var LabelArray1 = [];
+                $.ajax({ 
+                    type : 'POST',
+                    url : '/FindSubList',
+                    data :{ 'sublabel' : va,
+                    csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()  
+                    },
+                    success:function(data){
+                        // alert("Engine Trained SuccessFully");
+                        // alert(data['sublabels'])
+                        if(data["sublabels"].length == 0)
+                        {
+                             $('#dataSulcol'+LabId).html("<select class='form-control' id='SubLable"+LabId+"' onchange='AddNewSubLabel(this.value,this.id);'><option disabled selected >--- No Sub-Labels ---</option><option value='NewSub'>Add New Sub Label</option></select>");
+                        }
+                        else
+                        {
+                            var temp = "";
+                            for(var i = 0;i<data['sublabels'].length;i++)
+                            {
+                                LabelArray1.push(data['sublabels'][i]);
+
+                                temp = temp + "<option value="+data['sublabels'][i]+">" + data['sublabels'][i] + "</option>";
+                            } 
+                            $('#dataSulcol'+LabId).html("<select class='form-control' id='SubLable"+LabId+"' onchange='AddNewSubLabel(this.value,this.id);'>"+temp+"<option value='NewSub'>Add New Sub Label</option></select>");   
+                        }
+                        
+
+                        
+                        // window.location = "/queue";
+                    }
+                });
+            }
+        }
+
+        function AddNewSubLabel(ve,TextId)
+        {
+            var TextId = TextId[TextId.length -1];
+            if(ve == "NewSub")
+            {
+                $('#NewSubText'+TextId).html('<input type="text" id="TextValLab'+TextId+'" class="form-control">');
+            }
+            else
+            {
+                $('#NewSubText'+TextId).html('');
+            }
+            // alert(TextId);
+            OccruanceFun(ve,TextId);
+        }
+
+        function OccruanceFun(ve,TextId)
+        {
+
+            var TextId = TextId[TextId.length -1];
+            if(ve == "NewSub")
+            {
+                $('#Occur'+TextId).html('<select class="form-control" id="occuranceid"'+TextId+' disabled><option>-- Select --</option></select>');
+            }
+            else
+            {
+
+                var TempStoreLabels = [];
+                // alert(dataapp['edata'][0][0].length);
+                for(var i=0;i<dataapp['edata'][0][0].length;i++)
+                {
+                    TempStoreLabels.push(dataapp['edata'][0][0][i][0][0]);
+                }
+                // console.log(TempStoreLabels);
+                var Camp = $('#Label'+TextId).val();
+                var FinCnt  = 0;
+                for(var i=0;i<TempStoreLabels.length;i++)
+                {
+                    if(TempStoreLabels[i].toLowerCase().includes(Camp.toLowerCase()) == true)
+                    {
+                        FinCnt ++;
+                    }
+                }
+                // console.log(FinCnt);
+                var ttt = '<select class="form-control" id="occuranceid"'+TextId+'><option>--- Select Occurance ---</option>';
+                for(var i=0;i<FinCnt;i++)
+                {   
+                    ttt = ttt + '<option>'+(i+1)+'</option>';
+                }
+
+                $('#Occur'+TextId).html(ttt+'</select>');
+ 
+                
+            }
+            
+        }
+
+
+
+
+        function RemoveLabel(id)
+        {  
+            if( id == 0)
+            {
+                var tt = '#RowVal'+ id;
+                $(tt).remove();
+                $('#ShowAdd').hide();
+                $('#HeaderDisplay').hide();
+                $('#TempInsertLabel').val(parseInt($('#TempInsertLabel').val()) -  1);
+
+            }
+            else
+            {
+                var tt = '#RowVal'+ id;
+                $(tt).remove();
+                $('#TempInsertLabel').val(parseInt($('#TempInsertLabel').val()) -  1);
+            }
+        }
+
+        function AddLabelsToCsv()
+        {
+            var NumnerofFields = parseInt($('#TempInsertLabel').val());
+            // alert(NumnerofFields);
+
+            var Labels = [];
+            var SubLabels = [];
+            var NewLabels = [];
+
+            for(var i = 0;i<NumnerofFields;i++)
+            {
+                Labels.push($('#Label'+i).val());
+                SubLabels.push($('#SubLable'+i).val());
+                NewLabels.push($('#TextValLab'+i).val());
+            }
+            
+
+            var ALabelsArray = JSON.stringify(Labels);
+            var ASubLabelArray = JSON.stringify(SubLabels);
+            var ANewLabelArray = JSON.stringify(NewLabels);
+
+
+             $.ajax({ 
+                type : 'POST',
+                url : '/PushValuesToCSV',
+                data :{ ALabelsArray : ALabelsArray,ASubLabelArray:ASubLabelArray,ANewLabelArray:ANewLabelArray,
+                csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()  
+                },
+                success:function(data){
+                    alert("Engine Trained SuccessFully");
+                    // window.location = "/queue";
+                    location.reload();
+                }
+            }); 
+
+            // console.log(Labels+':::'+SubLabels+':::'+NewLabels);
+            // console.log(Labels.length + ":::" + SubLabels.length + ":::" + NewLabels.length );
+        }
+
+        function retrain()
+        {
+            // var ty = parseInt($('#TempInsertLabel').val());
+            
+
+            // var LabelArray = [];
+            // var SepArray = [];
+            // for (var i = 0;i<ty;i++)
+            // {
+            //     LabelArray.push($("#Label_train_"+i).val());
+            //     SepArray.push($("#sep_train_"+i).val());    
+            // }
+
+            // var ALabelArray = JSON.stringify(LabelArray);
+            // var ASepArray = JSON.stringify(SepArray);
+
+             $.ajax({ 
+                type : 'POST',
+                url : '/PushLables',
+                data :{ filename:dataapp['filename'],
+                csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()  
+                },
+                success:function(data){
+                    alert("Engine Trained SuccessFully");
+                    window.location = "/queue";
+                }
+            }); 
+            
+        }
+
+
+        $('#input_id').change(function(){
+            $('#input_label').html($('#input_id').val());
+        });
+
+        $('#font-up').click(function(){
+            
+            temp_src = "<image src=";
+            for(var i=0;i<10;i++)
+            {
+                temp_src = temp_src + "{% static 'images/image2.jpg' %} style='width: 100%;height: 100%;'>" ;
+            }
+            $('#grid_images').html(temp_src);
+        })
+        var pagearray = []; 
+
+        function displaylabelvalue_t(i)
+        {
+            var EachPage = i
+            var TempnnerHtml = "";
+            var tempdat = "<div class = 'row'><div class='col-4' style='text-align:center;'><h5>Label</h5></div><div class='col-2' style='text-align:center;'><h5>Seperator</h5></div><div class='col-4' style='text-align:center;'><h5>Data</h5></div><div class='col-2' style='text-align:center;'><h5>Accuracy</h5></div></div>";
+            for(var EachLable = 0;EachLable<pagearray[EachPage][0].length;EachLable++)
+            { 
+                //console.log(pagearray[EachPage][0][EachLable][0]); 
+                //tempdat = tempdat + "<div class = 'row' style='margin-bottom: 5px;'><div class='col-4'><input type='text' class='form-control' style='width: 100%;height: 0%;' id='label" + pagearray[EachPage][0][EachLable][0][0] + "' value = '"+pagearray[EachPage][0][EachLable][0][0]+"''></div><div class='col-2'><input type='text' class='form-control' style='width: 100%;height: 0%;' id='sep" + pagearray[EachPage][0][EachLable][1][0] + "' value = '"+pagearray[EachPage][0][EachLable][1][0]+"''></div><div class='col-4'><input type='text' class='form-control' style='width: 100%;height: 0%;' id='data" + pagearray[EachPage][0][EachLable][2][0] + "' value = '"+pagearray[EachPage][0][EachLable][2][0]+"''></div><div class='col-2' style='text-align: center;margin-top: 7px;'><span class='label gradient-4 btn-rounded'>"+pagearray[EachPage][0][EachLable][2][5]+"%"+"</span></div></div>";
+                tempdat = tempdat + "<div class = 'row' style='margin-bottom: 5px;'><div class='col-4'><input type='text' class='form-control' style='width: 100%;height: 0%;' id='Label_'"+EachLable+" value = '"+pagearray[EachPage][0][EachLable][0][0]+"' onclick='hilighttest()' '></div><div class='col-2'><input type='text' class='form-control' style='width: 100%;height: 0%;' id='sep" + pagearray[EachPage][0][EachLable][1][0] + "' value = '"+pagearray[EachPage][0][EachLable][1][0]+"''></div><div class='col-4'><input type='text' class='form-control' style='width: 100%;height: 0%;' id='data" + pagearray[EachPage][0][EachLable][2][0] + "' value = '"+pagearray[EachPage][0][EachLable][2][0]+"''></div><div class='col-2' style='text-align: center;margin-top: 7px;'><span class='label gradient-4 btn-rounded'>"+pagearray[EachPage][0][EachLable][2][5]+"%"+"</span></div></div>";
+               // for(var LableName = 0;LableName<pagearray[EachPage][0][EachLable][0].length;LableName++)
+                //{ 
+                //    console.log(pagearray[EachPage][0][EachLable][0][0]);//[1][LableName]);
+                //}
+            } 
+            document.getElementById('datacol').innerHTML = tempdat;
+        }
+        
+        var particularposition = "" ;
+        var aomountposition = "";
+        var valueparticular = [];
+        var valueamount = [];
+        var comdata = "";
+        var return_datas = "";
+        var tableconfidence = [];
+
+        function PushEachPageData(PageNumber)
+        {
+            EachTableInPageData = "";
+            FinalDivionString = "";
+            var TableTable = "<div class='row'><div class='table-responsive border-right' style='border-right: 2px solid #edecf8'>";
+            for(var EachTableInPageIndex = 0; EachTableInPageIndex<dataapp['edata'][PageNumber][1].length; EachTableInPageIndex++ ) //Each Table
+            {
+                EachTableRowData = "";
+                EachTableInPageData = EachTableInPageData + "<table class='table table-bordered'>";
+                for(var EachTableRowIndex  = 0; EachTableRowIndex  < dataapp['edata'][PageNumber][1][EachTableInPageIndex].length; EachTableRowIndex++)
+                {
+                    EachTableRowData = EachTableRowData + "<tr>";
+                    
+                    var TableDataRow = 0; 
+                    EachCellInRowData = "";
+                    for(var EachCellInRowIndex  = 0; EachCellInRowIndex  < dataapp['edata'][PageNumber][1][EachTableInPageIndex][EachTableRowIndex][TableDataRow].length; EachCellInRowIndex++)
+                    {
+                        EachCellInRowData = EachCellInRowData + "<td >";
+                        if(EachTableRowIndex == 0)
+                        {
+                            EachCellInRowData = EachCellInRowData +"<b>" + dataapp['edata'][PageNumber][1][EachTableInPageIndex][EachTableRowIndex][TableDataRow][EachCellInRowIndex]+"</b>";
+                            if(String(dataapp['edata'][PageNumber][1][EachTableInPageIndex][EachTableRowIndex][TableDataRow][EachCellInRowIndex].trim().toLowerCase()) == "particulars")
+                            {
+                                //alert(dataapp['edata'][currentpagevalue][1][0][i][0][j]+ " " + j);
+                                particularposition = EachCellInRowIndex;
+                            }
+                            else if(String(dataapp['edata'][PageNumber][1][EachTableInPageIndex][EachTableRowIndex][TableDataRow][EachCellInRowIndex].trim().toLowerCase()) == "|description")
+                            {
+                                particularposition = EachCellInRowIndex;
+                            }
+                            else if(String(dataapp['edata'][PageNumber][1][EachTableInPageIndex][EachTableRowIndex][TableDataRow][EachCellInRowIndex].trim().toLowerCase()) == "| description")
+                            {
+                                particularposition = EachCellInRowIndex;
+                            }
+                            else if(String(dataapp['edata'][PageNumber][1][EachTableInPageIndex][EachTableRowIndex][TableDataRow][EachCellInRowIndex].trim().toLowerCase()) == "name")
+                            {
+                                particularposition = EachCellInRowIndex;
+                            }
+                            if(String(dataapp['edata'][PageNumber][1][EachTableInPageIndex][EachTableRowIndex][TableDataRow][EachCellInRowIndex].trim().toLowerCase()) == "rate")
+                            {
+                                //alert(dataapp['edata'][currentpagevalue][1][0][i][0][j]+ " " + j);
+                                aomountposition = EachCellInRowIndex;
+
+                            }
+                            else if(String(dataapp['edata'][PageNumber][1][EachTableInPageIndex][EachTableRowIndex][TableDataRow][EachCellInRowIndex].trim().toLowerCase()) == "rate|   ")
+                            {
+                                //alert(dataapp['edata'][currentpagevalue][1][0][i][0][j]+ " " + j);
+                                aomountposition = EachCellInRowIndex;
+
+                            }
+                            else if(String(dataapp['edata'][PageNumber][1][EachTableInPageIndex][EachTableRowIndex][TableDataRow][EachCellInRowIndex].trim().toLowerCase()) == "amount")
+                            {
+                                //alert(dataapp['edata'][currentpagevalue][1][0][i][0][j]+ " " + j);
+                                aomountposition = EachCellInRowIndex;
+
+                            }
+                            else if(String(dataapp['edata'][PageNumber][1][EachTableInPageIndex][EachTableRowIndex][TableDataRow][EachCellInRowIndex].trim().toLowerCase()) == "amt")
+                            {
+                                //alert(dataapp['edata'][currentpagevalue][1][0][i][0][j]+ " " + j);
+                                aomountposition = EachCellInRowIndex;
+
+                            }
+
+                            //alert(dataapp['edata'][PageNumber][1][EachTableInPageIndex][EachTableRowIndex][TableDataRow][EachCellInRowIndex]);
+                        }
+                        else
+                        {
+                            EachCellInRowData = EachCellInRowData +"<textarea id='txtval_" + EachTableRowIndex+"_"+(EachCellInRowIndex)+ "' style='border: none;width: 100%;font-size: 13px;font-family: sans-serif;font-weight: 10;'>" + dataapp['edata'][PageNumber][1][EachTableInPageIndex][EachTableRowIndex][TableDataRow][EachCellInRowIndex] + "</textarea>";
+                            if(EachCellInRowIndex == particularposition)
+                            {
+                                valueparticular.push(dataapp['edata'][PageNumber][1][EachTableInPageIndex][EachTableRowIndex][TableDataRow][EachCellInRowIndex]);
+                            }
+                            if(EachCellInRowIndex == aomountposition)
+                            {
+                                valueamount.push(dataapp['edata'][PageNumber][1][EachTableInPageIndex][EachTableRowIndex][TableDataRow][EachCellInRowIndex]);
+                            }
+                            //alert(dataapp['edata'][PageNumber][1][EachTableInPageIndex][EachTableRowIndex][TableDataRow][EachCellInRowIndex]);
+                        }
+                        EachTableRowData = EachTableRowData + EachCellInRowData + "</td>";
+                        EachCellInRowData = "";
+                    }
+
+                    for(var EachCellInRowIndex  = 0; EachCellInRowIndex  < dataapp['edata'][PageNumber][1][EachTableInPageIndex][EachTableRowIndex][1].length; EachCellInRowIndex++)
+                    {
+                        tableconfidence.push(dataapp['edata'][PageNumber][1][EachTableInPageIndex][EachTableRowIndex][1][4]);
+                    }
+
+                    EachTableInPageData = EachTableInPageData + EachTableRowData  + "</tr>";
+                    EachTableRowData = "";
+                }
+
+                //alert(valueparticular+":::"+valueamount);
+                comparevalue(valueparticular,valueamount,EachTableInPageIndex,EachTableRowIndex);
+                valueparticular = [];
+                valueamount = [];
+                //alert(comdata);
+                console.log(comdata);
+                FinalDivionString = FinalDivionString + EachTableInPageData+ "</div></div>";
+                EachTableInPageData = "";
+            }
+            console.log("return_first",return_datas.length);
+            
+            document.getElementById("FinalComparedData").innerHTML = TableTable;
+
+            //FinalDivionString = FinalDivionString + "</div><div id='tableheadmatched' class='col-4' style='height: 555px;'></div></div>";
+            document.getElementById("FinalTableDisplay").innerHTML=FinalDivionString; 
+            document.getElementById('labeldatacurrentpage').innerHTML = " Page:&emsp;" + (parseInt(PageNumber) + 1) + "&emsp;/&emsp;" + dataapp['edata'].length ;
+
+
+            var EachPage = PageNumber;
+            //alert(EachPage);
+            var TempnnerHtml = "";
+            var tempdat = "<div class = 'row'><div class='col-4' style='text-align:center;'><h5>Label</h5></div><div class='col-2' style='text-align:center;'><h5>Seperator</h5></div><div class='col-4' style='text-align:center;'><h5>Data</h5></div><div class='col-2' style='text-align:center;'><h5>Accuracy</h5></div></div>";
+            for(var EachLable = 0;EachLable<dataapp['edata'][EachPage][0].length;EachLable++)
+            { 
+                //console.log(pagearray[EachPage][0][EachLable][0]); 
+                //tempdat = tempdat + "<div class = 'row' style='margin-bottom: 5px;'><div class='col-4'><input type='text' class='form-control' style='width: 100%;height: 0%;' id='label" + pagearray[EachPage][0][EachLable][0][0] + "' value = '"+pagearray[EachPage][0][EachLable][0][0]+"''></div><div class='col-2'><input type='text' class='form-control' style='width: 100%;height: 0%;' id='sep" + pagearray[EachPage][0][EachLable][1][0] + "' value = '"+pagearray[EachPage][0][EachLable][1][0]+"''></div><div class='col-4'><input type='text' class='form-control' style='width: 100%;height: 0%;' id='data" + pagearray[EachPage][0][EachLable][2][0] + "' value = '"+pagearray[EachPage][0][EachLable][2][0]+"''></div><div class='col-2' style='text-align: center;margin-top: 7px;'><span class='label gradient-4 btn-rounded'>"+pagearray[EachPage][0][EachLable][2][5]+"%"+"</span></div></div>";
+                tempdat = tempdat + "<div class = 'row' style='margin-bottom: 5px;'><div class='col-4'><input type='text' class='form-control' style='width: 100%;height: 0%;' id='Label_"+EachLable+"' value = '"+dataapp['edata'][EachPage][0][EachLable][0][0]+"' onclick='hilighttest()' '></div><div class='col-2'><input type='text' class='form-control' style='width: 100%;height: 0%;' id='sep" + dataapp['edata'][EachPage][0][EachLable][1][0] + "' value = '"+dataapp['edata'][EachPage][0][EachLable][1][0]+"''></div><div class='col-4'><input type='text' class='form-control' style='width: 100%;height: 0%;' id='data" + dataapp['edata'][EachPage][0][EachLable][2][0] + "' value = '"+dataapp['edata'][EachPage][0][EachLable][2][0]+"''></div><div class='col-2' style='text-align: center;margin-top: 7px;'><span class='label gradient-4 btn-rounded'>"+dataapp['edata'][EachPage][0][EachLable][2][5]+"%"+"</span></div></div>";
+               // for(var LableName = 0;LableName<pagearray[EachPage][0][EachLable][0].length;LableName++)
+                //{ 
+                //    console.log(pagearray[EachPage][0][EachLable][0][0]);//[1][LableName]);
+                //}
+            } 
+            document.getElementById('datacol').innerHTML = tempdat;
+
+
+
+        }
+             
+
+        function comparevalue(valueparticular, valueamount,TableID)
+        {   
+            tablebodymatchedval = []
+            var particularvalstr = JSON.stringify(valueparticular);
+            var amountvalstr = JSON.stringify(valueamount);
+            var tempData = "" ;
+             $.ajax({ 
+                type : 'POST',
+                url : '/comparevalue',  
+                data :{ particulaval : particularvalstr,amountval:amountvalstr,
+                csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()  
+                },
+                success:function(data)
+                {
+ 
+                    tablebodymatchedval = "<table class='table table-bordered'><tr><td>Confidence</td><td>Difference</td><td>Status</td><td>Action</td></tr>";
+                    //blebodymatchedval = "";
+                    for(var i=0;i<data['comparedval'].length;i++)
+                    {
+
+                        tablebodymatchedval = tablebodymatchedval + "<tr><td><span class='label gradient-4 btn-rounded'>"+ tableconfidence[i] + " %"+ "</span></td><td><textarea style='border: none;width: 100%;font-size: 13px;font-family: sans-serif;font-weight: 10;'>"+data['comparedval'][i]+"</textarea></td>";
+                        if(data['comparedval'][i] == null )
+                        {
+                            tablebodymatchedval = tablebodymatchedval + "<td><span style='background-color: #03306f;' class='label label-primary'>Not Available</span></td> <td><button id='btntableaction_"+TableID+"_"+i +"' class = 'btn' style='padding: 5px 17px;width: 100%;background-color: white;' onclick='BtnActionUpdateLibrary(this.id)'> <i class='fa fa-plus'></i></td></tr>";
+                        }
+                        else if(data['comparedval'][i] < 0 || data['comparedval'][i] > 0 )
+                        {
+                            tablebodymatchedval = tablebodymatchedval + "<td><span style='background-color: #f00;' class='label label-danger'>Un Matched</span></td><td><button id='btntableaction_"+i +"' class = 'btn' style='padding: 5px 17px;width: 100%;background-color: white;' onclick='BtnActionUpdateLibrary(this.id)' disabled> <i class='fa fa-plus'></i><td></tr>";
+                        }
+                        else
+                        {
+                            tablebodymatchedval = tablebodymatchedval + "<td><span style='    background-color: #178217;' class='label label-success'>Matched</span></td><td><button id='btntableaction_"+ i +"' class = 'btn' style='padding: 5px 17px;width: 100%;background-color: white;' onclick='BtnActionUpdateLibrary(this.id)' disabled> <i class='fa fa-plus'></i><td></tr>";   
+                        }
+                        
+                    }
+                    tablebodymatchedval =tablebodymatchedval + "</table>";  
+                    $('#FinalComparedData').append(tablebodymatchedval);
+                    tablebodymatchedval = ""
+                    //console.log(tempData); 
+                    tempData = "";
+                    tablebodymatchedval = "";  
+                    //alert(tempData);
+                    //document.getElementById('FinalComparedData').innerHTML = tablebodymatchedval + "</table>" ; 
+                }
+
+            });
+            
+        }
+
+ // function comparevalue(valueparticular, valueamount)
+ //        {   
+ //            var particularvalstr = JSON.stringify(valueparticular);
+ //            var amountvalstr = JSON.stringify(valueamount);
+ //            var tempData = "" ;
+ //             $.ajax({ 
+ //                type : 'POST',
+ //                url : '/comparevalue',
+ //                data :{ particulaval : particularvalstr,amountval:amountvalstr,
+ //                csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()  
+ //                },
+ //                success:function(data)
+ //                {
+ //                    tablebodymatchedval = tablebodymatchedval + "<table><tr>";
+ //                    var tableheadmatchedval = "<tr><td style='padding: 0.15rem;border-color: #03306f;border: 2px solid;'><input type='text' style='font-weight: bold;text-align: center;' class='form-control' value='Confidence'></td><td style='padding: 0.15rem;border-color: #03306f;border: 2px solid;'><input type='text' style='font-weight: bold;text-align: center;' class='form-control' value='Difference'></td><td style='padding: 0.15rem;text-align: center;border-color: #03306f;border: 2px solid;'><input type='text' style='font-weight: bold;text-align: center;' class='form-control' value='Status'></td><td style='text-align: center;padding: 0.15rem;border-color: #03306f;border: 2px solid;'><input type='text' style='font-weight: bold;text-align: center;' class='form-control' value='Action'></td></tr>";
+
+ //                    for(var i=0;i<data['comparedval'].length;i++)
+ //                    {
+
+ //                        tablebodymatchedval = tablebodymatchedval + "<td style='padding: 0.15rem;border-color: #03306f;text-align: center;border: 2px solid;'><span class='label gradient-4 btn-rounded'>"+ tableconfidence[i] + "%"+ "</span></td><td style='padding: 0.15rem;border-color: #03306f;border: 2px solid;'><textarea style='border: none;width: 100%;font-size: 13px;font-family: sans-serif;font-weight: 10;'>"+ data['comparedval'][i] +"</textarea></td>";
+ //                        if(data['comparedval'][i] == null )
+ //                        {
+ //                            tablebodymatchedval = tablebodymatchedval + "<td style='text-align: center;padding: 0.15rem;border-color: #03306f;border: 2px solid;'><span style='background-color: #03306f;' class='label label-primary'>Not Available</span></td><td style='text-align: center;padding: 0.15rem;border-color: #03306f;border: 2px solid;'><button id='btntableaction_"+ (i+1) +"' class = 'btn' style='padding: 5px 17px;width: 100%;background-color: white;' onclick='BtnActionUpdateLibrary(this.id)'> <i class='fa fa-plus'></i><td></tr>";
+ //                        }
+ //                        else if(data['comparedval'][i] < 0 || data['comparedval'][i] > 0 )
+ //                        {
+ //                            tablebodymatchedval = tablebodymatchedval + "<td style='text-align: center;padding: 0.15rem;border-color: #03306f;border: 2px solid;'><span style='    background-color: #f00;' class='label label-danger'>Un Matched</span></td><td style='text-align: center;padding: 0.15rem;border-color: #03306f;border: 2px solid;'><button id='btntableaction_"+ (i+1) +"' class = 'btn' style='padding: 5px 17px;width: 100%;background-color: white;' onclick='BtnActionUpdateLibrary(this.id)' disabled> <i class='fa fa-plus'></i><td></tr>";
+ //                        }
+ //                        else
+ //                        {
+ //                            tablebodymatchedval = tablebodymatchedval + "<td style='text-align: center;padding: 0.15rem;border-color: #03306f;border: 2px solid;'><span style='    background-color: #178217;' class='label label-success'>Matched</span></td><td style='text-align: center;padding: 0.15rem;border-color: #03306f;border: 2px solid;'><button id='btntableaction_"+ (i+1) +"' class = 'btn' style='padding: 5px 17px;width: 100%;background-color: white;' onclick='BtnActionUpdateLibrary(this.id)' disabled> <i class='fa fa-plus'></i><td></tr>";   
+ //                        }
+ //                        tablebodymatchedval =tablebodymatchedval + "</table>";
+ //                    } 
+ //                    tablebodymatchedvalasd = tablebodymatchedvalasd + String(tablebodymatchedval);
+ //                    alert(tablebodymatchedvalasd)
+ //                    $('#FinalComparedData').append(tablebodymatchedval);
+ //                    //console.log(tempData);
+ //                    callback(tempData);
+ //                    tempData = "";
+ //                    tablebodymatchedval = ""; 
+ //                    tempData = $('#tempTabledata').val(); 
+ //                    //alert(tempData);
+ //                    //document.getElementById('FinalComparedData').innerHTML = tablebodymatchedval + "</table>" ; 
+ //                }
+
+ //            });
+            
+ //        }
+
+
+
+// function comparevalue(valueparticular, valueamount)
+//         {   
+//             var particularvalstr = JSON.stringify(valueparticular);
+//             var amountvalstr = JSON.stringify(valueamount);
+//             var tablebodymatchedval = "";
+//              $.ajax({ 
+//                 type : 'POST',
+//                 url : '/comparevalue',
+//                 data :{ particulaval : particularvalstr,amountval:amountvalstr,
+//                 csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()  
+//                 },
+//                 success:function(data){
+//                     console.log(data)
+//                     tablebodymatchedval = tablebodymatchedval + "<table><tr>";
+//                     var tableheadmatchedval = "<tr><td style='padding: 0.15rem;border-color: #03306f;border: 2px solid;'><input type='text' style='font-weight: bold;text-align: center;' class='form-control' value='Confidence'></td><td style='padding: 0.15rem;border-color: #03306f;border: 2px solid;'><input type='text' style='font-weight: bold;text-align: center;' class='form-control' value='Difference'></td><td style='padding: 0.15rem;text-align: center;border-color: #03306f;border: 2px solid;'><input type='text' style='font-weight: bold;text-align: center;' class='form-control' value='Status'></td><td style='text-align: center;padding: 0.15rem;border-color: #03306f;border: 2px solid;'><input type='text' style='font-weight: bold;text-align: center;' class='form-control' value='Action'></td></tr>";
+
+//                     for(var i=0;i<data['comparedval'].length;i++){
+//                         tablebodymatchedval = tablebodymatchedval + "<td style='padding: 0.15rem;border-color: #03306f;text-align: center;border: 2px solid;'><span class='label gradient-4 btn-rounded'>"+ tableconfidence[i] + "%"+ "</span></td><td style='padding: 0.15rem;border-color: #03306f;border: 2px solid;'><textarea style='border: none;width: 100%;font-size: 13px;font-family: sans-serif;font-weight: 10;'>"+ data['comparedval'][i] +"</textarea></td>";
+//                         if(data['comparedval'][i] == null )
+//                         {
+//                             tablebodymatchedval = tablebodymatchedval + "<td style='text-align: center;padding: 0.15rem;border-color: #03306f;border: 2px solid;'><span style='background-color: #03306f;' class='label label-primary'>Not Available</span></td><td style='text-align: center;padding: 0.15rem;border-color: #03306f;border: 2px solid;'><button id='btntableaction_"+ (i+1) +"' class = 'btn' style='padding: 5px 17px;width: 100%;background-color: white;' onclick='BtnActionUpdateLibrary(this.id)'> <i class='fa fa-plus'></i><td></tr>";
+//                         }
+//                         else if(data['comparedval'][i] < 0 || data['comparedval'][i] > 0 )
+//                         {
+//                             tablebodymatchedval = tablebodymatchedval + "<td style='text-align: center;padding: 0.15rem;border-color: #03306f;border: 2px solid;'><span style='    background-color: #f00;' class='label label-danger'>Un Matched</span></td><td style='text-align: center;padding: 0.15rem;border-color: #03306f;border: 2px solid;'><button id='btntableaction_"+ (i+1) +"' class = 'btn' style='padding: 5px 17px;width: 100%;background-color: white;' onclick='BtnActionUpdateLibrary(this.id)' disabled> <i class='fa fa-plus'></i><td></tr>";
+//                         }
+//                         else
+//                         {
+//                             tablebodymatchedval = tablebodymatchedval + "<td style='text-align: center;padding: 0.15rem;border-color: #03306f;border: 2px solid;'><span style='    background-color: #178217;' class='label label-success'>Matched</span></td><td style='text-align: center;padding: 0.15rem;border-color: #03306f;border: 2px solid;'><button id='btntableaction_"+ (i+1) +"' class = 'btn' style='padding: 5px 17px;width: 100%;background-color: white;' onclick='BtnActionUpdateLibrary(this.id)' disabled> <i class='fa fa-plus'></i><td></tr>";   
+//                         }
+//                         tablebodymatchedval =tablebodymatchedval + "</table>";
+//                     } 
+                    
+//                     //document.getElementById('tableheadmatched').innerHTML =  tableheadmatchedval;
+//                     //document.getElementById('FinalComparedData').innerHTML = tablebodymatchedval + "</table>" ; 
+//                 }   
+//             });
+//             return tablebodymatchedval;
+//         }
+
+
+        var dataapp = [];
+        
+        $(document).ready(function(){
+            //alert("err");
+                $.ajax({ 
+                type : 'POST',
+                url : '/retivedatafromdb',
+                data :{ rid : $('#referenceid').val(),
+                csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()  
+                },
+                success:function(data){
+                    
+                    /*
+                    for(var i = 0;i<data['edata'].length;i++)
+                    { 
+                        pagearray.push(data['edata'][i]);
+                    }
+                    displaylabelvalue(0)
+                    loadallibitmage(data['filename'],data['totalpages'])
+
+                    $('#file_info').html(data['totalpages']); 
+                    $('#data_exracted').html(data['dataextracted']+"%"); 
+                    $('#data_accuracy').html(data['dataaccuracy']+"%");
+                    $('#noise_percentage').html(data['noisepercentage']+"%");
+                    */
+
+                    $('#file_info').html(data['totalnumberofpages']); 
+                    console.log(data);
+                    $('#nextpage').attr('class', 'enablesutaom');
+
+
+                    dataapp = data;
+
+                    $('#totalnumberofpages').val(data['edata'].length);
+                    PushEachPageData(0)
+                    //nextpagefun();
+                    loadallibitmage();
+
+
+                    var EachPage = 0;
+                    var TempnnerHtml = "";
+                    var tempdat = "<div class = 'row'><div class='col-4' style='text-align:center;'><h5>Label</h5></div><div class='col-2' style='text-align:center;'><h5>Seperator</h5></div><div class='col-4' style='text-align:center;'><h5>Data</h5></div></div>";
+                    for(var EachLable = 0;EachLable<dataapp['edata'][EachPage][0].length;EachLable++)
+                    { 
+                        //console.log(pagearray[EachPage][0][EachLable][0]); 
+                        //tempdat = tempdat + "<div class = 'row' style='margin-bottom: 5px;'><div class='col-4'><input type='text' class='form-control' style='width: 100%;height: 0%;' id='label" + pagearray[EachPage][0][EachLable][0][0] + "' value = '"+pagearray[EachPage][0][EachLable][0][0]+"''></div><div class='col-2'><input type='text' class='form-control' style='width: 100%;height: 0%;' id='sep" + pagearray[EachPage][0][EachLable][1][0] + "' value = '"+pagearray[EachPage][0][EachLable][1][0]+"''></div><div class='col-4'><input type='text' class='form-control' style='width: 100%;height: 0%;' id='data" + pagearray[EachPage][0][EachLable][2][0] + "' value = '"+pagearray[EachPage][0][EachLable][2][0]+"''></div><div class='col-2' style='text-align: center;margin-top: 7px;'><span class='label gradient-4 btn-rounded'>"+pagearray[EachPage][0][EachLable][2][5]+"%"+"</span></div></div>";
+                        tempdat = tempdat + "<div class = 'row' style='margin-bottom: 5px;'><div class='col-4'><input type='text' class='form-control' style='width: 100%;height: 0%;' id='Label_"+EachLable+"' value = '"+dataapp['edata'][EachPage][0][EachLable][0][0]+"' onclick='hilighttest()' '></div><div class='col-2'><input type='text' class='form-control' style='width: 100%;height: 0%;' id='sep" + dataapp['edata'][EachPage][0][EachLable][1][0] + "' value = '"+dataapp['edata'][EachPage][0][EachLable][1][0]+"''></div><div class='col-4'><input type='text' class='form-control' style='width: 100%;height: 0%;' id='data" + dataapp['edata'][EachPage][0][EachLable][2][0] + "' value = '"+dataapp['edata'][EachPage][0][EachLable][2][0]+"''></div></div>";
+                       // for(var LableName = 0;LableName<pagearray[EachPage][0][EachLable][0].length;LableName++)
+                        //{ 
+                        //    console.log(pagearray[EachPage][0][EachLable][0][0]);//[1][LableName]);
+                        //}
+                    } 
+                    document.getElementById('datacol').innerHTML = tempdat;
+                    
+
+                    //for(var EachPage = 0;EachPage<pagearray.length;EachPage++)
+                    //{ 
+                        // console.log(pagearray[i]); 
+                        
+                        
+                    //}
+                } 
+            });
+        }); 
+        var incr = 0;
+
+        function onclickvaldown()
+        {
+            var numbr = $('#pagenumber').val();
+            //alert("Current Page " + numbr);
+
+             if( (parseInt($('#pagenumber').val())-1) >= parseInt($('#totalnumberofpages').val()))
+            { 
+            
+                t = parseInt(numbr) - 2;
+                //alert(t);
+                PushEachPageData(t);
+
+                incr -= 1;
+                //$('#pagenumber').val(incr);
+                document.getElementById('pagenumber').value = incr;
+
+            }
+            else
+            {  
+
+                //alert("pagenumber"+parseInt($('#totalnumberofpages').val()));
+                if((numbr -1) == 1)
+                {
+                    //alert("pagenumber"+$('#pagenumber').val());
+                    //alert("total number of ages"+$('#totalnumberofpages').val());
+
+                    t = parseInt(numbr) - 2;
+                    //alert(t);
+                    PushEachPageData(t);
+                     incr -= 1;
+                    $('#pagenumber').val(incr);
+
+                    $('#previouspage').attr('class', 'disbalecustom');
+                }
+                else
+                {
+                    var numbr = $('#pagenumber').val(); 
+            
+                    t = parseInt(numbr) - 2;
+                    //alert(t);
+                    PushEachPageData(t);
+                    imageclicknavi("test"+t)
+
+                    incr -= 1;
+                    $('#pagenumber').val(incr);
+                    $('#nextpage').attr('class', 'enablesutaom');
+                }
+            }
+            // var numbr = $('#pagenumber').val();
+            // alert("page number"+numbr);
+
+            // if( incr == 0)
+            // { 
+            
+            //     t = parseInt(numbr) - 1;
+            //     alert(t);
+            //     changecontentoftable(t);
+
+            //     incr -= 1;
+            //     //$('#pagenumber').val(incr);
+            //     document.getElementById('pagenumber').value = incr;
+
+            // }
+            // else
+            // {  
+
+            //     alert("pagenumber"+parseInt($('#totalnumberofpages').val()));
+            //     if((parseInt($('#pagenumber').val())-1) <= parseInt($('#totalnumberofpages').val()))
+            //     {
+            //         //alert("pagenumber"+$('#pagenumber').val());
+            //         alert("total number of ages"+$('#totalnumberofpages').val());
+            //         $('#nextpage').attr('class', 'disbalecustom');
+            //     }
+            //     else
+            //     {
+            //         var numbr = $('#pagenumber').val(); 
+            
+            //         t = parseInt(numbr) - 1;
+            //         alert(t);
+            //         changecontentoftable(t);
+
+            //         incr -= 1;
+            //         $('#pagenumber').val(incr);
+            //         $('#previouspage').attr('class', 'enablesutaom');
+            //     }
+            // }
+            
+
+        }
+
+        function nextpagefun()
+        {
+            var numbr = $('#pagenumber').val();
+            //alert("page number curret "+numbr);
+
+             if( incr == 0)
+            { 
+            
+                t = parseInt(numbr) + 1;
+                //alert(t);
+                changecontentoftable(t); 
+
+                incr += 1;
+                //$('#pagenumber').val(incr);
+                document.getElementById('pagenumber').value = incr;
+
+            }
+            else
+            {  
+
+                //alert("pagenumber"+parseInt($('#pagenumber').val()));
+                if((parseInt($('#pagenumber').val())+1) >= parseInt($('#totalnumberofpages').val()))
+                {
+                    //alert("pagenumber"+$('#pagenumber').val());
+                    //alert("last page"+$('#pagenumber').val());
+                    $('#nextpage').attr('class', 'disbalecustom');
+                }
+                else
+                {
+                    var numbr = $('#pagenumber').val(); 
+            
+                    t = parseInt(numbr) + 1;
+                    // alert(t);
+                    changecontentoftable(t);
+                    imageclicknavi("test"+t)
+
+                    incr += 1;
+                    $('#pagenumber').val(incr);
+                    $('#previouspage').attr('class', 'enablesutaom');
+                }
+            }
+        } 
+
+
+        
+        
+
+        function changecontentoftable(numbr){
+            //alert("Received " + numbr)
+            var currentpagevalue = numbr;  
+            // console.log(currentpagevalue);
+            // console.log(dataapp['edata'].length);
+            // console.log(dataapp['edata'][currentpagevalue][0]);
+            // console.log(dataapp['edata'][currentpagevalue][1]);
+            // console.log(dataapp['edata'][0][1].length);
+
+            // document.getElementById('tablehead').innerHTML = "";
+            // document.getElementById('tablebody').innerHTML = "";
+            // document.getElementById('tableheadmatched').innerHTML = "";
+            // document.getElementById('tablebodymatched').innerHTML = ""; 
+
+            var tabledataheader = "<tr>";
+            var tabledatatemp = "<tr>";
+ 
+            // /console.log(dataapp['edata'][currentpagevalue][1][0][0][0]);
+            // console.log(dataapp['edata'][currentpagevalue][0]);
+            
+           // console.log( dataapp['edata'][currentpagevalue][1][0][0][0]);//Data
+            //console.log( dataapp['edata'][currentpagevalue][1][0][1][0]);//Data
+            valueparticular = [];
+            valueamount = [];
+            var EachTable = ""
+            for (var k= 0;k<dataapp['edata'][currentpagevalue][1].length;k++)
+            {
+                var EachTable = EachTable + "<div class='row'><div class='col-8' style='height: 555px;'><div class='table-responsive border-right' style='border-right: 2px solid #edecf8'><table class='table table-bordered'><thead id='tablehead'>"
+                for(var i = 0 ;i< dataapp['edata'][currentpagevalue][1][k].length;i++)
+                { 
+
+
+                    if( i == 0)
+                    {
+                        tabledataheader = "";
+                        //console.log(data['edata'][0][1][i][0].length);
+                        for(var j = 0;j< dataapp['edata'][currentpagevalue][1][k][i][0].length;j++)
+                        {
+                            //tabledataheader = tabledataheader + "<td style='padding: 0.0rem;'><input type='text' class='form-control' style='font-weight: bold;width:auto;' value='"+ data['edata'][0][1][i][0][j] +"'></td>";
+                            tabledataheader = tabledataheader + "<td style='padding: 0.15rem;border-color: #03306f;border: 2px solid;'><input type='text' style='text-align: center;font-weight: bold;' class='form-control' id='txtval_"+ i + "_" + j +"' value='"+  dataapp['edata'][currentpagevalue][1][k][i][0][j] + "'></td>";
+
+                            //alert(String(dataapp['edata'][currentpagevalue][1][0][i][0][j]) + " " + String(dataapp['edata'][currentpagevalue][1][0][i][0][j]).length);
+                            if(String(dataapp['edata'][currentpagevalue][1][k][i][0][j].trim().toLowerCase()) == "particulars")
+                            {
+                                //alert(dataapp['edata'][currentpagevalue][1][0][i][0][j]+ " " + j);
+                                particularposition = j;
+                            }
+                            if(String(dataapp['edata'][currentpagevalue][1][k][i][0][j].trim().toLowerCase()) == "amount")
+                            {
+                                //alert(dataapp['edata'][currentpagevalue][1][0][i][0][j]+ " " + j);
+                                aomountposition = j;
+
+                            }
+                        }
+                    }
+                    else
+                    {
+                        for(var j = 0;j< dataapp['edata'][currentpagevalue][1][k][i][0].length;j++)
+                        {
+                            //tabledatatemp = tabledatatemp + "<td style='padding: 0.0rem;'><input type='text'  lass='form-control' value='" + data['edata'][0][1][i][0][j] + "'></td>";
+                            tabledatatemp = tabledatatemp + "<td style='padding: 0.15rem;border-color: #03306f;border: 2px solid;'><textarea id='txtval_" +i + "_" + j+"'style='border: none;width: 100%;font-size: 13px;font-family: sans-serif;font-weight: 10;'>"+ dataapp['edata'][currentpagevalue][1][k][i][0][j] +"</textarea>";
+
+                            if(j == particularposition)
+                            {
+                                valueparticular.push(dataapp['edata'][currentpagevalue][1][k][i][0][j]);
+                            }
+                            if(j == aomountposition)
+                            {
+                                valueamount.push(dataapp['edata'][currentpagevalue][1][k][i][0][j]);
+                            }
+                        }
+                        tableconfidence.push(dataapp['edata'][currentpagevalue][1][k][i][1][4]);
+                        tabledatatemp = tabledatatemp + "</tr>";
+                    }
+                }
+
+                EachTable = EachTable + tabledataheader + "</tr>" + "</thead><tbody>"+ tabledatatemp +"</tbody></table></div></div>";
+
+            }
+
+            document.getElementById('FinalTableDisplay').innerHTML = EachTable;
+
+            //alert(valueparticular);
+            //alert(valueamount);
+
+            console.log("valueparticular:" + valueparticular);
+            console.log("valueamount:" + valueamount);
+
+            // ================ Compare csv ==================
+            comparevalue()
+
+            //console.log(tabledataheader);
+
+            //document.getElementById('tablehead').innerHTML = tabledataheader + "</tr>";
+            // document.getElementById('tablebody').innerHTML = tabledatatemp;
+            
+
+            document.getElementById('labeldatacurrentpage').innerHTML = " Page:&emsp;" + (parseInt(currentpagevalue) + 1) + "&emsp;/&emsp;" + dataapp['edata'].length ;
+            
+
+            var EachPage = currentpagevalue;
+            //alert(EachPage);
+            var TempnnerHtml = "";
+            var tempdat = "<div class = 'row'><div class='col-4' style='text-align:center;'><h5>Label</h5></div><div class='col-2' style='text-align:center;'><h5>Seperator</h5></div><div class='col-4' style='text-align:center;'><h5>Data</h5></div><div class='col-2' style='text-align:center;'><h5>Accuracy</h5></div></div>";
+            for(var EachLable = 0;EachLable<dataapp['edata'][EachPage][0].length;EachLable++)
+            { 
+                //console.log(pagearray[EachPage][0][EachLable][0]); 
+                //tempdat = tempdat + "<div class = 'row' style='margin-bottom: 5px;'><div class='col-4'><input type='text' class='form-control' style='width: 100%;height: 0%;' id='label" + pagearray[EachPage][0][EachLable][0][0] + "' value = '"+pagearray[EachPage][0][EachLable][0][0]+"''></div><div class='col-2'><input type='text' class='form-control' style='width: 100%;height: 0%;' id='sep" + pagearray[EachPage][0][EachLable][1][0] + "' value = '"+pagearray[EachPage][0][EachLable][1][0]+"''></div><div class='col-4'><input type='text' class='form-control' style='width: 100%;height: 0%;' id='data" + pagearray[EachPage][0][EachLable][2][0] + "' value = '"+pagearray[EachPage][0][EachLable][2][0]+"''></div><div class='col-2' style='text-align: center;margin-top: 7px;'><span class='label gradient-4 btn-rounded'>"+pagearray[EachPage][0][EachLable][2][5]+"%"+"</span></div></div>";
+                tempdat = tempdat + "<div class = 'row' style='margin-bottom: 5px;'><div class='col-4'><input type='text' class='form-control' style='width: 100%;height: 0%;' id='squidheadlink' value = '"+dataapp['edata'][EachPage][0][EachLable][0][0]+"' onclick='hilighttest()' '></div><div class='col-2'><input type='text' class='form-control' style='width: 100%;height: 0%;' id='sep" + dataapp['edata'][EachPage][0][EachLable][1][0] + "' value = '"+dataapp['edata'][EachPage][0][EachLable][1][0]+"''></div><div class='col-4'><input type='text' class='form-control' style='width: 100%;height: 0%;' id='data" + dataapp['edata'][EachPage][0][EachLable][2][0] + "' value = '"+dataapp['edata'][EachPage][0][EachLable][2][0]+"''></div><div class='col-2' style='text-align: center;margin-top: 7px;'><span class='label gradient-4 btn-rounded'>"+dataapp['edata'][EachPage][0][EachLable][2][5]+"%"+"</span></div></div>";
+               // for(var LableName = 0;LableName<pagearray[EachPage][0][EachLable][0].length;LableName++)
+                //{ 
+                //    console.log(pagearray[EachPage][0][EachLable][0][0]);//[1][LableName]);
+                //}
+            } 
+            document.getElementById('datacol').innerHTML = tempdat;
+
+
+            //alert(i.replace("test",""));
+            
+            
+
+
+
+            //console.log(tabledataheader);
+            /*$('#tablehead').html(tabledataheader + "</tr>");
+            $('#tablebody').html(tabledatatemp);
+
+            $('#tableheadmatched').html(tabledataheader + "</tr>");
+            $('#tablebodymatched').html(tabledatatemp);*/
+            
+        }
+
+        function loadallibitmage()
+        {
+
+            var tempimag = ""; 
+            if (dataapp['imagefilename'].length == 1)
+            { 
+                 tempimag = tempimag + "<div class='row' style='padding: 5px;'><img src='{% static 'tempdata/'%}' class='rounded mx-auto d-block' onclick='imageclicknavi(this.id)' id='test' style='width: 100%;border: dotted;'></div><div style='text-align: center;margin-top: -6px;'><label style='font-size: 10px;'>Page 1 of 1</label></div>";
+
+                document.getElementById('imagegrid').innerHTML = tempimag;
+                var baseurl = "{% static 'tempdata/' %}";
+                
+                var iid = "test";
+                // alert(iid);
+                document.getElementById(iid).src = baseurl +  "/" + dataapp['filename'].replace(" ","") + "/" + dataapp['imagefilename'][0];
+
+
+                var tempimag1 = "<div class='row test'><img src='{% static 'tempdata/test/' %}' class='map maphilighted' id='imagedisplay1' width='70%' height='70%' ></div>";
+
+                document.getElementById('imagedisplay').innerHTML = tempimag1;
+                document.getElementById('imagedisplay1').src = baseurl + "/" + dataapp['filename'] + "/" + dataapp['imagefilename'][0];//.replace(".png",".jpg");
+
+
+            }
+            else
+            {
+                for(var i=0;i<dataapp['imagefilename'].length;i++)
+                {
+                     tempimag = tempimag + "<div class='row' style='padding: 5px;'><img src='{% static 'tempdata/'%}' class='rounded mx-auto d-block' onclick='imageclicknavi(this.id)' id='test"+ i + "' style='width: 100%;border: dotted;'></div><div style='text-align: center;margin-top: -6px;'><label style='font-size: 10px;'>Page "+ (i+1) +" of "+dataapp['imagefilename'].length+"</label></div>";
+                }
+
+
+                document.getElementById('imagegrid').innerHTML = tempimag;
+                var baseurl = "{% static 'tempdata/' %}";
+                for(var i=0;i<dataapp['imagefilename'].length;i++)
+                {
+                    var iid = "test" + i;
+                    // alert(iid);
+                    document.getElementById(iid).src = baseurl +  "/" + dataapp['filename'].replace(" ","") + "/" + dataapp['imagefilename'][i];
+                }
+
+
+                var tempimag1 = "<div class='row test'><img src='{% static 'tempdata/test/' %}' class='map maphilighted' id='imagedisplay1' width='70%' height='70%' ></div>";
+
+                document.getElementById('imagedisplay').innerHTML = tempimag1;
+                document.getElementById('imagedisplay1').src = baseurl + "/" + dataapp['filename'] + "/" + dataapp['imagefilename'][0];//.replace(".png",".jpg");
+
+            }
+            
+            
+            
+            
+
+            // tempimag = tempimag + "<div class='row' style='padding: 5px;'><img src='{% static 'tempdata/'%}' class='rounded mx-auto d-block' id='test' style='width: 100%;border: dotted;'></div>";
+
+            //alert(name);
+            // var tempimag = "";
+            // var tempimag1 = "";
+            // var d = String(name);
+            //tempimag = tempimag + '<div class="row"><img src="{% static "tempdata/'+name+'.png" %}" charset=utf-8;base64; style="width: 65%;border: dotted;"></div>'; 
+            // tempimag = tempimag + "<div class='row' style='padding: 5px;'><img src='{% static 'tempdata/'%}' class='rounded mx-auto d-block' id='test' style='width: 100%;border: dotted;'></div>";
+            //tempimag1 = tempimag1 + "<div class='row test map'><img src='{% static 'tempdata/'%}' class='map maphilighted' id='test1' width='70%' height='70%' usemap='#simple'></div><map name='simple'><area id='squidhead' href='#' shape='rect' coords='305,689,353,715' alt='Link'></map>";
+            /*for(var i = 0;i<pnum;i++)
+            {
+               tempimag = tempimag + "<div class='row'><img src='{% static 'tempdata/"+name+".png'%}' style='width: 65%;border: dotted;'></div>";
+            }*/ 
+            // baseurl = "{% static 'tempdata/' %}";
+              
+
+
+
+            //document.getElementById('imagedisplay').innerHTML = tempimag1;
+            //document.getElementById('test').src = baseurl + name + ".png";
+            //document.getElementById('test1').src = baseurl + name + ".png";  
+            //document.getElementById('imagedisplay').innerHTML = tempimag1;
+        }
+
+        function imageclicknavi(i)
+        {
+            var number = i.replace("test","");
+            //alert(i.replace("test",""));
+            var baseurl = "{% static 'tempdata/' %}";
+            document.getElementById('imagedisplay1').src = baseurl + "/" + dataapp['filename'] + "/" + dataapp['imagefilename'][number];//.replace(".png",".jpg");
+            PushEachPageData(number); 
+
+        }
+
+        
+        function BtnActionUpdateLibrary(i)
+        {
+            //alert(particularposition + );
+            //txtval_
+            //alert(i.replace("btntableaction_","txtval_") + "_" +  particularposition);
+            //alert(i.replace("btntableaction_","txtval_") + "_" +  aomountposition);
+            var CurrentParticularVal = document.getElementById(i.replace("btntableaction_","txtval_") + "_" + particularposition).value;
+            //alert(CurrentParticularVal);
+            var CurrentAmoutVal = document.getElementById(i.replace("btntableaction_","txtval_") + aomountposition).value ;
+
+            //alert(CurrentParticularVal + ":::" + CurrentAmoutVal );
+            var StringForAlert = "Are you sure, You want to save below details in Library?\n\nDiscription :  " + CurrentParticularVal+"\nPrice   :  " + CurrentAmoutVal;
+
+            var result = confirm(StringForAlert);
+            if (result) {
+
+                 $.ajax({ 
+                type : 'POST',
+                url : '/updatexlxs',
+                data :{ updateparticularval : CurrentParticularVal, updateamountval : CurrentAmoutVal.trim(),
+                csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()  
+                },
+                success:function(data){
+                    alert("Saved")    
+                }
+            });
+                
+            //Logic to delete the item
+            }
+
+
+        }
+
+        
+
+
+        function pushtoexcel()
+        {
+            // alert(dataapp['edata']);
+            var Headers = [];
+            var Data = [];
+            
+            for(var page =0; page < dataapp['edata'].length; page++)
+            {
+                var tempHeader = [];
+                var tempData = [];
+               for(var EachLable = 0;EachLable<dataapp['edata'][page][0].length;EachLable++)
+                { 
+                    tempHeader.push(dataapp['edata'][page][0][EachLable][0][0]);
+                    tempData.push(dataapp['edata'][page][0][EachLable][2][0])
+                }   
+               Headers.push(tempHeader);
+               Data.push(tempData);
+            }
+            // alert(Headers.length+","+Data.length);
+            // 
+            // var sendlabel = [];
+            // var sendvalue = [];
+            // for(var j = 0;j<dataapp['edata'].length;j++)
+            // {
+                 
+            // }
+            // console.log(sendtabledata);
+            var TaleData = [];
+            
+
+            for(var page =0; page < dataapp['edata'].length; page++)
+            {
+                for(var eachtable = 0;eachtable<dataapp['edata'][page][1].length;eachtable++)
+                { 
+                    var Temptable = [];
+                    for(var row = 0; row < dataapp['edata'][page][1][eachtable].length;row++)
+                    {
+                        // console.log(dataapp['edata'][page][1][eachtable][row][0]);
+                        Temptable.push(dataapp['edata'][page][1][eachtable][row][0])
+                    }
+                    // alert()
+                    TaleData.push(Temptable);
+                }
+            }
+
+            // alert(dataapp['edata'][0][1][1][0][0]);
+
+            var sendHeaders = JSON.stringify(Headers);
+            var sendData = JSON.stringify(Data);
+            var sendtabledata = JSON.stringify(TaleData);
+
+
+
+
+
+            $.ajax({ 
+                type : 'POST',
+                url : '/insertvaluetoexcel',
+                data :{ sendHeaders : sendHeaders,sendData:sendData,sendtabledata:sendtabledata,
+                csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()  
+                },
+                success:function(data){
+                    alert("Data Saved To Excel");
+                }
+            });
+
+        }
+
+
+        var i = 1, j = 0;
+         function zoomin()
+         {
+
+            document.getElementById('temptextbox').value = i;
+            //alert(document.getElementById('temptextbox').value);
+            var zoomScale = document.getElementById('temptextbox').value;
+            if(zoomScale < 5)
+            {
+                setZoom(zoomScale,document.getElementsByClassName('test')[0]);
+                i += 1;
+                j = i;
+            }
+            else
+            {
+
+            }
+            
+         }
+         function zoomout()
+         {
+            i -= 1;
+            document.getElementById('temptextbox').value = i;
+            var zoomScale = document.getElementById('temptextbox').value;
+            if (zoomScale > 0)
+            {
+                setZoom(zoomScale,document.getElementsByClassName('test')[0]);
+            } 
+         }
+         function setZoom(zoom,el)
+        {
+          
+          transformOrigin = [0,0];
+            el = el || instance.getContainer();
+            var p = ["webkit", "moz", "ms", "o"],
+                s = "scale(" + zoom + ")",
+                oString = (transformOrigin[0] * 100) + "% " + (transformOrigin[1] * 100) + "%";
+
+            for (var i = 0; i < p.length; i++) {
+                el.style[p[i] + "Transform"] = s;
+                el.style[p[i] + "TransformOrigin"] = oString;
+            }
+
+            el.style["transform"] = s;
+            el.style["transformOrigin"] = oString;
+          
+        }
+
+        function hilighttest()
+        {
+            // alert("called");
+            var a = 0;
+        }
+
+        /*var tabledataheader = "<tr><td>1</td><td>2</td><td>3</td></tr>";
+        var tabledatatemp = "<tr><td>va</td><td>asd</td></tr><tr><td>2</td><td>qw</td><td>tret</td></tr>";
+
+        $('#tablehead').html(tabledataheader);
+        $('#tablebody').html(tabledatatemp);*/
+
+       /* $(function() {
+        $('.map').maphilight();
+        $('#squidheadlink').click(function(e)
+        {
+            alert("called");
+            $('#squidhead').mouseover();
+        }); 
+    });*/
+
+      $body = $("body");
+
+    $(document).on({
+        ajaxStart: function() { $body.addClass("loading");    },
+         ajaxStop: function() { $body.removeClass("loading"); }    
+    });
+
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>    
+    <script type="text/javascript"> $('table').SetEditable();</script>
+</body>
+<div class="modal"><!-- Place at bottom of page --></div>
+
+</html>

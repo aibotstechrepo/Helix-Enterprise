@@ -1,0 +1,712 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Helix OCR</title>
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/AiBots.ico' %}">
+    <!-- Custom Stylesheet -->
+    <link rel="stylesheet" href="{% static '/plugins/highlightjs/styles/darkula.css' %}">
+    <link href="{% static '/plugins/tables/css/datatable/dataTables.bootstrap4.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <!--<style type="text/css">
+    /* Track */
+    ::-webkit-scrollbar-track {
+      background: #f1f1f1; 
+    }
+     
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+      background: #888; 
+    }
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+      background: #555; 
+    }
+
+    ::-webkit-scrollbar {
+    height: 4px;              /* height of horizontal scrollbar ← You're missing this */
+    width: 4px;               /* width of vertical scrollbar */
+    border: 1px solid #d5d5d5;
+    }
+    </style>-->
+    <style type="text/css">
+  .modal {
+    display:    none;
+    position:   fixed;
+    z-index:    1000;
+    top:        0;
+    left:       0;
+    height:     100%;
+    width:      100%;
+    background: rgba( 255, 255, 255, .8 ) 
+                url('/static/images/preloader.gif') 
+                50% 50% 
+                no-repeat; 
+}
+
+/* When the body has the loading class, we turn
+   the scrollbar off with overflow:hidden */
+body.loading .modal {
+    overflow: hidden;   
+}
+
+/* Anytime the body has the loading class, our
+   modal element will be visible */
+body.loading .modal {
+    display: block;
+}
+  </style>
+
+</head>
+
+<body>
+
+    <!--*******************
+        Preloader start
+    ********************-->
+    <div id="preloader">
+        <div class="loader">
+            <svg class="circular" viewBox="25 25 50 50">
+                <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="3" stroke-miterlimit="10" />
+            </svg>
+        </div>
+    </div>
+    <!--*******************
+        Preloader end
+    ********************-->
+
+    
+    <!--**********************************
+        Main wrapper start
+    ***********************************-->
+    <div id="main-wrapper">
+
+        <!--**********************************
+            Nav header start
+        ***********************************-->
+        <div class="nav-header" style="background-color: #ffffff;height:3.9rem;">
+            <div class="brand-logo">
+                <a href="dashboard.html">
+                    <b class="logo-abbr"><img src="{% static 'images/AiBots.ico' %}" alt=""> </b>
+                    <span class="logo-compact"><img src="{% static 'images/AIBOTSTECH.png' %}" alt=""></span>
+                    <span class="brand-title">
+                        <img src="{% static 'images/AIBOTSTECH.png' %}" alt="" width="90%">
+                    </span>
+                </a>
+                <hr style="margin-top: 5px;margin-bottom:none;">
+            </div>
+        </div>
+
+        <!--**********************************
+            Nav header end
+        ***********************************-->
+
+        <!--**********************************
+            Header start
+        ***********************************-->
+        <div class="header" style="background-color: #0d1456;">    
+            <div class="header-content clearfix">
+                
+                <div class="nav-control">
+                    <div class="hamburger">
+                        <span class="toggle-icon" ><i class="icon-menu" style="color:fcf7f8;"></i></span>
+                    </div>
+                </div>
+                <div class="header-left">
+                    <div class="input-group icons" style="width: 140%;margin-top: 8px;">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-transparent border-0 pr-2 pr-sm-3" id="basic-addon1" style="padding: 0.175rem 0.75rem;"><i class="mdi mdi-magnify" style="color:white;"></i></span>
+                        </div>
+                        <input type="search" class="form-control" placeholder="Search Dashboard" aria-label="Search Dashboard">
+                        <div class="drop-down   d-md-none">
+							<form action="#">
+								<input type="text" class="form-control" placeholder="Search">
+							</form>
+                        </div>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <ul class="clearfix">
+                        <li class="icons dropdown"><a href="#" data-toggle="dropdown">
+                                <i class="mdi mdi-email-outline" style="color:white;"></i>
+                                <span class="badge gradient-1 badge-pill badge-primary" style="color:#0d1456;">3</span>
+                            </a>
+                        </li>
+                        <li class="icons dropdown"><a href="javascript:void(0)" data-toggle="dropdown">
+                                <i class="mdi mdi-bell-outline" style="color:white;"></i>
+                                <span class="badge badge-pill gradient-2 badge-primary" style="color:#0d1456 !important;">3</span>
+                            </a> 
+                        </li>
+                        <!--<li class="icons dropdown d-none d-md-flex">
+                            <a href="javascript:void(0)" class="log-user"  data-toggle="dropdown">
+                                <span>English</span>  <i class="fa fa-angle-down f-s-14" aria-hidden="true"></i>
+                            </a>
+                            <div class="drop-down dropdown-language animated fadeIn  dropdown-menu">
+                                <div class="dropdown-content-body">
+                                    <ul>
+                                        <li><a href="javascript:void()">English</a></li>
+                                        <li><a href="javascript:void()">Dutch</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>-->
+                        <li class="icons dropdown">
+                            <div class="user-img c-pointer position-relative"   data-toggle="dropdown">
+                                <span class="activity active"></span>
+                                <img src="{% static 'images/admin.png' %}" height="40" width="40" alt="">
+                            </div> 
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        
+        </div>
+        
+
+        <!--**********************************
+            Header end ti-comment-alt
+        ***********************************-->
+
+        <!--**********************************
+            Sidebar start
+        ***********************************-->
+        
+        <div class="nk-sidebar" style="top:3.9rem;">           
+            <div class="nk-nav-scroll">
+                <ul class="metismenu" id="menu">
+                    <li>
+                        <a href="dashboard.html">
+                            <i class="icon-home menu-icon" style="font-size: 1.2rem;"></i><span class="nav-text">Dashboard</span>
+                        </a>
+                        <!--<ul aria-expanded="false">
+                            <li><a href="./index.html">Home 1</a></li>
+                            <li><a href="./index-2.html">Home 2</a></li> 
+                        </ul>-->
+                    </li>
+                    <li>
+                        <a href="/user_process_new_task">
+                            <i class="icon-pencil menu-icon" style="font-size: 1.2rem;color: #f7fafc;"></i><span class="nav-text">Task</span>
+                        </a>
+                    </li> 
+                    <li>
+                        <a href="/queue">
+                        <i class="icon-note menu-icon" style="font-size: 1.2rem;"></i><span class="nav-text">Reivew</span>
+                        </a>
+                    </li>
+                    <!--<li>
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false"> 
+                            <i class="icon-note menu-icon" style="font-size: 1.2rem;"></i><span class="nav-text">Complex Task</span>
+                        </a>
+                            <ul aria-expanded="false">
+                                <li><a href="/user_process_new_task">New</a></li>
+                                <li><a href="/queue">Queue</a></li>
+                                <li><a href="#">Pending Review</a></li>
+                                <li><a href="#">Reviewed</a></li>
+                            </ul>
+
+                    </li>-->
+                    <li>
+                        <a>
+                            <i class="icon-docs menu-icon" style="font-size: 1.2rem;"></i><span class="nav-text">Schedular</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a>
+                            <i class="icon-link menu-icon" style="font-size: 1.2rem;"></i><span class="nav-text">Reports</span>
+                        </a>
+                    </li> 
+                </ul>
+            </div>
+        </div>
+        <!--**********************************
+            Sidebar end
+        ***********************************-->
+
+        <!--**********************************
+            Content body start
+        ***********************************-->
+        <div class="content-body" style="margin-left:12.9875rem;">
+
+            <div class="row page-titles" style="padding-bottom: 0px;">
+                <div class="col p-md-0">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="javascript:void(0)" style="color: #a2a2a2;">Dashboard</a></li>
+                        <li class="breadcrumb-item active"><a href="javascript:void(0)"  style="color: #a2a2a2;">Home</a></li>
+                    </ol><br>
+                    <h4 class="d-inline" style="color:black;">Tasks</h4> 
+                    <p class="text-muted">Create or reviwe tasks to process and extract data in each pdf fiels from specified directory. </p>
+                </div>
+            </div>
+            
+
+            <div class="container-fluid" style="padding-left: 0px;padding-right:18px;padding-top: 0px;">
+                <div class="row">
+                    <div class="col-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    {% csrf_token %}
+                                    <br>
+                                    <div class="basic-form"> 
+
+                                        <div class="row">
+                                            <div class="col-1"></div>
+                                            <div class="col-2 col-form-label" style="text-align:right;">
+                                                <label>Input file directory</label>
+                                            </div>
+                                            <div class="col-7">
+                                                <div class="input-group">
+                                                <input type="text" class="form-control" style="height:0px;" id="input_directory">
+                                                <div class="input-group-append">
+                                                <button class="btn btn-outline-dark" type="button" onclick="validate_folder_1()">Validate</button>
+                                                
+                                                </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-1"><div id="i_v"></div><div><input type="text" id="i_v1"  hidden></div></div>
+                                        </div>
+                                        <br>
+                                        <div class="row">
+                                            <div class="col-1"></div>
+                                            <div class="col-2 col-form-label" style="text-align:right;">
+                                                <label>Output file directory</label>
+                                            </div>
+                                            <div class="col-7">
+                                                <div class="input-group">
+                                                <input type="text" class="form-control" style="height:0px;" id="output_directory">
+                                                <div class="input-group-append">
+                                                <button class="btn btn-outline-dark" type="button" onclick="validate_folder_2()">Validate</button>
+                                                </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-1"><div id="o_v"></div><div><input type="text" id="o_v1" hidden></div></div>
+                                        </div>
+                                        <br>
+                                        <div class="row">
+                                            <div class="col-1"></div>
+                                            <div class="col-2 col-form-label" style="text-align:right;">
+                                                <label>Processed file Directory</label>
+                                            </div>
+                                            <div class="col-7">
+                                                <div class="input-group">
+                                                <input type="text" class="form-control" style="height:0px;" id="processed_directory">
+                                                <div class="input-group-append">
+                                                <button class="btn btn-outline-dark" type="button" onclick="validate_folder_3()">Validate</button>
+                                                </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-1"><div id="o_p"></div><div><input type="text" id="o_p2" hidden></div></div>
+                                        </div>
+                                        <br>
+                                        <div class="row">
+                                            <div class="col-1"></div>
+                                            <div class="col-2 col-form-label" style="text-align:right;">
+                                                <label>Output excel file name</label>
+                                            </div>
+                                            <div class="col-7">
+                                                <input type="text" class="form-control" style="height:0px;" id="outputfilename">
+                                            </div>
+                                            <div class="col-1"></div></div>
+                                        </div> 
+                                        <br>
+                                        <div class="row">
+                                            <div class="col-1"></div>
+                                            <div class="col-10"><hr></div>
+                                            <div class="col-1"></div>
+                                        </div>
+                                        
+                                        <div class="row">
+                                            <div class="col-7"></div>
+                                            <div class="col-2" style="margin-left: -30px;">
+                                                <input type="button" class="btn mb-1 btn-secondary" style="height:45px;width: 85%;margin-left: -56px;background-color: #dcdcdc;"value="Clear" id="cleardata">&ensp;
+                                            </div>
+                                            <div class="col-2">
+                                                <input type="button" class="btn mb-1 btn-success" style="height:45px;width: 85%;margin-left: -56px;background-color: #0d1456;border-color: #0d1456;color: #f7fafc;"value="Process" id="btnprocess">
+                                            </div>
+                                        </div>
+
+                                        <!--<div class="row">
+                                            <div class="col-2"></div>
+                                            <div class="col-7"><input type="button" class="btn mb-1 btn-success" style="height:45px;width: 85%;margin-left: -56px;background-color: #0d1456;border-color: #0d1456;color: #f7fafc;"value="Testing" id="btnprocess_1"></div>
+                                        </div>-->
+                                       <!-- <div class="row">
+                                            <div class="col-1"></div>
+                                            <div class="col-10"><hr></div>
+                                            <div class="col-1"></div>
+                                        </div> -->
+                                    </div>
+                                    
+
+                                    <div class="row">
+                                        
+                                        <div class="col-12"  style="margin-bottom: 20px;">
+                                            <div class="table-responsive">
+                                                <table class="table table-striped table-bordered zero-configuration">
+                                                    <thead>
+                                                        <tr> 
+                                                            <th width="10%">Sl No</th>
+                                                            <th>Time Stamp</th>
+                                                            <th>Input file directory</th>
+                                                            <th>Output file directory</th>
+                                                            <th>Processed file directory</th>
+                                                            <th>Excel file name</th>
+                                                            <th>Total No of file</th>
+                                                        </tr>
+                                                    </thead> 
+                                                    <tbody> 
+                                                        
+                                                        <!--<tr role="row" class="odd"> 
+                                                            <td>3455</td>
+                                                            <td>OLA</td>
+                                                            <td>Descritpiton</td>
+                                                            <td>22-9-19</td>
+                                                            <td>Pending</td>
+                                                            <td><a href="#" style="font-size:25px;" class="fa fa-file-text-o"></a>&emsp;<a href="#" class="fa fa-edit" style="font-size:25px;"></a>&emsp;<a href="#" style="font-size:25px;" class="fa fa-trash"></a></td> 
+                                                        </tr> -->
+
+                                                       {% for t in datat %}
+                                                        <tr>
+                                                            <td>{{ t.taskid }}</td>
+                                                            <td>{{ t.timestamp }}</td>
+                                                            <td>{{ t.inputfilelocation }}</td>
+                                                            <td>{{ t.outputfilelocatin }}</td> 
+                                                            <td>{{ t.processedfilelocation }}</td> 
+                                                            <td>{{ t.excelfilename }}</td>
+                                                            <td>{{ t.totalnumberoffiles }}</td> 
+                                                        </tr>
+                                                        {% endfor %}
+                                                    </tbody>
+                                                    <tfoot>
+                                                        <tr> 
+                                                            <th width="10%">Sl No</th>
+                                                            <th>Time Stamp</th>
+                                                            <th>Input file directory</th>
+                                                            <th>Output file directory</th>
+                                                            <th>Processed file directory</th>
+                                                            <th>Excel file name</th>
+                                                            <th>Total No of file</th>
+                                                        </tr>
+                                                    </tfoot>
+                                                </table> 
+                                            </div>
+                                        </div> 
+
+                                </div>
+                            </div>
+                        </div>
+                </div> 
+            </div>
+            <!-- #/ container -->
+        </div>
+        <!--**********************************
+            Content body end
+        ***********************************-->
+        
+        
+        <!--**********************************
+            Footer start
+        ***********************************-->
+        <!--<div class="footer">
+            <div class="copyright">
+                <p>Copyright &copy; Designed & Developed by <a href="https://themeforest.net/user/quixlab">Quixlab</a> 2018</p>
+            </div>
+        </div>-->
+        <!--**********************************
+            Footer end
+        ***********************************-->
+    </div>
+    <!--**********************************
+        Main wrapper end
+    ***********************************-->
+
+    <!--**********************************
+        Scripts
+    ***********************************-->
+    <script src="{% static 'plugins/common/common.min.js' %}"></script>
+    <script src="{% static 'js/custom.min.js' %}"></script>
+    <script src="{% static 'js/settings.js' %}"></script>
+    <script src="{% static 'js/gleek.js' %}"></script>
+    <script src="{% static 'js/styleSwitcher.js' %}"></script>
+    <script src="{% static '/plugins/highlightjs/highlight.pack.min.js' %}"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="{% static '/plugins/tables/js/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static '/plugins/tables/js/datatable/dataTables.bootstrap4.min.js' %}"></script>
+    <script src="{% static '/plugins/tables/js/datatable-init/datatable-basic.min.js' %}"></script>
+
+    <script>
+        (function($) {
+        "use strict"
+
+            new quixSettings({
+                version: "light", //2 options "light" and "dark"
+                layout: "vertical", //2 options, "vertical" and "horizontal"
+                navheaderBg: "color_1", //have 10 options, "color_1" to "color_10"
+                headerBg: "color_1", //have 10 options, "color_1" to "color_10"
+                sidebarStyle: "full", //defines how sidebar should look like, options are: "full", "compact", "mini" and "overlay". If layout is "horizontal", sidebarStyle won't take "overlay" argument anymore, this will turn into "full" automatically!
+                sidebarBg: "color_1", //have 10 options, "color_1" to "color_10"
+                sidebarPosition: "fixed", //have two options, "static" and "fixed"
+                headerPosition: "fixed", //have two options, "static" and "fixed"
+                containerLayout: "wide",  //"boxed" and  "wide". If layout "vertical" and containerLayout "boxed", sidebarStyle will automatically turn into "overlay".
+                direction: "ltr" //"ltr" = Left to Right; "rtl" = Right to Left
+            });
+
+
+        })(jQuery);
+    </script>
+    <script type="text/javascript">
+        function image_push()
+        {   
+            var temp = "<img src='images/image.jpg' style='height:80px;border-style: dashed;width:70px;";
+            var temp1 = "";
+
+            for (var i = 0; i < 20; i++) {
+                temp1 = temp1 + temp + "' id=" + i +" onclick='image_view(this.id)'><br><br>";
+            }
+            document.getElementById('image_push').innerHTML = temp1;
+        }
+        function image_view(id)
+        {
+            var src = document.getElementById(id).src; 
+            document.getElementById('image_view_').innerHTML = "<img src='" + src + "' style='height:100%;width:100%;'>";
+        }
+
+        /*$( document ).ready(function() {
+            $.ajax({
+
+                type : 'POST',
+                url : 'list_of_template',
+                data :{
+                csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
+                },
+                success:function(data){
+                    var t_temp = "<option>";
+                    var t1_temp = "";
+
+                    for ( var i = 0; i < data.length ;  i++)
+                    {
+                        t1_temp = t1_temp + t_temp + data[i] + "</option>";
+                    }
+                    $('#templates_details').html("<option>----Select----</option>"+t1_temp);
+                } 
+            });
+        });*/
+
+        $('#submit_task').click(function(){
+            var t_id = $('#t_id').val();
+            var t_name = $('#t_name').val();
+            var t_desc = $('#t_desc').val();
+            var templates_details = $('#templates_details').val(); 
+            var input_file_name = $('#input_file_name').val();
+            var output_file_name = $('#output_file_name').val();
+            var file_name_pattern = $('#file_name_pattern').val();
+            
+            $.ajax({
+
+                type : 'POST',
+                url : 'user_details',
+                data :{ t_id : t_id, t_name : t_name,t_desc: t_desc,templates_details: templates_details,input_file_name: input_file_name,output_file_name:output_file_name,file_name_pattern:file_name_pattern,
+                csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
+                },
+                success:function(data){
+                    alert("Process Created");
+                    location.reload();
+
+                } 
+            });
+
+        });
+
+        function validate_folder_1()
+        {
+            var temp_dir = document.getElementById('input_directory').value;
+            $.ajax({
+
+                type : 'POST',
+                url : 'vaidate_file',
+                data :{ fname : temp_dir, 
+                csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
+                },
+                success:function(data){
+                    if (data == "Suceess"){
+                        $('#i_v').html("<i class='fa fa-check' style='color:green;font-size:30px;'></i>");
+                        $('#i_v1').val("true");
+                    }
+                    else
+                    {
+                        $('#i_v').html("<i class='fa fa-times' style='color:red;font-size:30px;'></i>");
+                        $('#i_v1').val("false");
+                    }
+                    
+
+                } 
+            });
+        }
+
+        function validate_folder_2()
+        {
+            var temp_dir = document.getElementById('output_directory').value;
+            $.ajax({
+
+                type : 'POST',
+                url : 'vaidate_file',
+                data :{ fname : temp_dir, 
+                csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
+                },
+                success:function(data){
+                    if (data == "Suceess"){
+                        $('#o_v').html("<i class='fa fa-check' style='color:green;font-size:30px;'></i>");
+                        $('#o_v1').val("true");
+                    }
+                    else
+                    {
+                        $('#o_v').html("<i class='fa fa-times' style='color:red;font-size:30px;'></i>") ;  
+                        $('#o_v1').val("false");
+                    }
+                    
+
+                } 
+            });
+        }
+        function validate_folder_3()
+        {
+            var temp_dir = document.getElementById('processed_directory').value;
+            $.ajax({
+
+                type : 'POST',
+                url : 'vaidate_file',
+                data :{ fname : temp_dir, 
+                csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
+                },
+                success:function(data){
+                    if (data == "Suceess"){
+                        $('#o_p').html("<i class='fa fa-check' style='color:green;font-size:30px;'></i>");
+                        $('#o_p2').val("true");
+                    }
+                    else
+                    {
+                        $('#o_p').html("<i class='fa fa-times' style='color:red;font-size:30px;'></i>") ;  
+                        $('#o_p2').val("false");
+                    }
+                    
+
+                } 
+            });
+        }
+
+        $('#btnprocess').click(function(){
+            if($('#i_v1').val() == "true" && $('#o_v1').val() == "true" && $('#o_p2').val() == "true")
+            {
+                    /*$('#input_directory').val("");
+                    $('#output_directory').val("");
+                    $('#outputfilename').val("");*/
+                    var lengthval = 0; 
+                    $.ajax({
+
+                        type : 'POST',
+                        url : 'processinput',
+                        data :{ ifname : $('#input_directory').val(),ofname : $('#output_directory').val(),oename : $('#outputfilename').val(),pname : $('#processed_directory').val(), 
+                        csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
+                        },
+                        success:function(data){
+                            /*alert(data['listoffile'].length);
+                            lengthval = data['listoffile'].length;
+                            $.ajax({
+                                async: true,
+                                type : 'POST',
+                                url : 'entertaskdetailstodb',
+                                data :{ ifname : $('#input_directory').val(),ofname : $('#output_directory').val(),oename : $('#outputfilename').val(),pname : $('#processed_directory').val(), lengthval: lengthval,
+                                csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
+                                },
+                                success:function(data){
+                                    location.reload();
+                                } 
+                            });*/
+                            //alert(data);
+                            location.reload();
+
+                        } 
+                    });
+            }
+            else
+            {
+                alert("Please Validate the directory Path");
+            }
+        });
+
+        $('#btnprocess_1').click(function(){
+            var lengthval = 0; 
+                    $.ajax({ 
+                        type : 'POST',
+                        url : 'testingocrfunction',
+                        data :{ ifname : $('#input_directory').val(),ofname : $('#output_directory').val(),oename : $('#outputfilename').val(),pname : $('#processed_directory').val(), 
+                        csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
+                        },
+                        success:function(data){ 
+                            alert(data); 
+                        } 
+                    });
+
+        });
+
+
+         
+
+        $('#ocrtestfunctionality').click(function(){
+        $.ajax({ 
+                    type : 'POST',
+                    url : 'ocrfunctionalitytest',
+                    data :{  
+                    csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
+                    },
+                    success:function(data){ 
+                        alert(data); 
+                    } 
+                });
+        });
+        
+
+
+        /*$('#cleardata').click(function(){
+            $.ajax({
+
+                type : 'POST',
+                url : 'loadtaskdata',
+                data :{ fname : 'a', 
+                csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
+                },
+                success:function(data){ 
+                    
+                    alert(data);
+                } 
+            });    
+        });*/
+        
+
+        $('#cleardata').click(function(){
+            $('#input_directory').val("");
+            $('#output_directory').val("");
+            $('#outputfilename').val("");
+            $('#processed_directory').val("");
+        });
+         
+        $body = $("body");
+
+    $(document).on({
+        ajaxStart: function() { $body.addClass("loading");    },
+         ajaxStop: function() { $body.removeClass("loading"); }    
+    });
+
+
+
+    </script>
+
+
+</body>
+<div class="modal"><!-- Place at bottom of page --></div>
+
+</html>
