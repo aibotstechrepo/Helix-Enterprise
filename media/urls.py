@@ -1,58 +1,20 @@
-from django.urls import path
-from . import views
-from django.conf import settings
-from django.conf.urls.static import static
-from django.contrib import admin
+"""mediaeast URL Configuration
+
+The `urlpatterns` list routes URLs to views. For more information please see:
+    https://docs.djangoproject.com/en/2.2/topics/http/urls/
+Examples:
+Function views
+    1. Add an import:  from my_app import views
+    2. Add a URL to urlpatterns:  path('', views.home, name='home')
+Class-based views
+    1. Add an import:  from other_app.views import Home
+    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
+Including another URLconf
+    1. Import the include() function: from django.urls import include, path
+    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
+"""
+from django.urls import path,include
 
 urlpatterns = [
-    path('',views.login),
-    path('admin',admin.site.urls),
-    path('login_check',views.login_check),
-    path('queue',views.queue),
-    path('dataview/<id>/',views.dataview),
-
-    #============== Tssks =======
-    path('vaidate_file',views.vaidate_file),
-    path('processinput',views.processinput),
-    path('entertaskdetailstodb',views.entertaskdetailstodb),
-    path('loadtaskdata',views.loadtaskdata),
-    path('ocrconverionengine',views.ocrconverionengine),
-
-    #============== dataview ===========
-    path('retivedatafromdb',views.retivedatafromdb),
-    path('comparevalue',views.comparevalue),
-    path('updatexlxs',views.updatexlxs),
-    path('insertvaluetoexcel',views.insertvaluetoexcel),
-
-
-    #test
-    path('testingocrfunction',views.testingocrfunction),
-
-    #============== User ============
-    path('user_process_new_task',views.user_process_new_task),
-    path('user_details',views.user_details),
-    path('list_of_task',views.list_of_task),
-
-
-
-    #============== Fuctionality ====
-    path('Find_number_of_files',views.Find_number_of_files),
-
-
-    #============== Testing ============
-    path('ocrfunctionalitytest',views.ocrfunctionalitytest),
-
-
-    #============= Training Model ==========
-    path('TrainingEngine/<id>/',views.Training),
-    path('LalbelData',views.LalbelData),
-    
-    path('PushLables',views.PushLables),
-    path('FindListOfHeaders',views.FindListOfHeaders),
-    path('FindSubList',views.FindSubList),
-    path('PushValuesToCSV',views.PushValuesToCSV),
-
+    path('',include('media.urls')),
 ]
-
-if settings.DEBUG:
-	urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
